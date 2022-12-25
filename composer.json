@@ -1,0 +1,12 @@
+{
+    "name": "vanchao0519/voyager-data-transport",
+    "description": "A command line to generate voager data import to database and export data to file (excel, csv, pdf)",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "vanchao0519",
+            "email": "vanchao0519@gmail.com"
+        }
+    ],
+    "require": {}
+}
