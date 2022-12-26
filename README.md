@@ -2,7 +2,7 @@
 A command line tools to generate the Controller and the View files 
 which can import data to database and export data to the file which extension included excel, csv and pdf
 <br>
-Notice that the package is based on https://voyager.devdojo.com/
+Notice that the package is based on <a href="https://voyager.devdojo.com/">Voyager</a>
 <br>
 ## Before install
 You must confirm that the voyager package installed before
