@@ -1,6 +1,6 @@
 {
     "name": "vanchao0519/voyager-data-transport",
-    "description": "A command line to generate voager data import to database and export data to file (excel, csv, pdf)",
+    "description": "A command line to generate voyager Controller and View files to import and export data with excel and database",
     "license": "MIT",
     "authors": [
         {
