@@ -1,0 +1,51 @@
+<?php
+
+namespace App\VoyagerDataTransport\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use VoyagerDataTransport\Traits\VoyagerExportData;
+use Illuminate\Support\Facades\DB;
+
+class {{ class }} extends Controller
+{
+    use VoyagerExportData;
+
+    protected function setWriterType()
+    {
+        $this->writerType = 'xlsx';
+    }
+
+    protected function setSpreadSheet()
+    {
+
+        $title_col = 1;
+
+        $colTitleMaps = [
+            $title_col => 'title',
+        ];
+
+        $colFieldMaps = [
+            $title_col => function( $list ) { return $list->title; },
+        ];
+
+        $row = 1;
+
+        // Set header
+        foreach ($colTitleMaps as $col => $title) {
+            $this->sheet->setCellValueByColumnAndRow($col, $row, $title);
+        }
+
+        DB::table('{{ tableName }}')
+            ->select($colTitleMaps)
+            ->orderBy('id', 'asc')
+            ->chunk(10, function($lists) use ( &$row, $colFieldMaps ) {
+                foreach ($lists as $list) {
+                    $row += 1;
+                    foreach ($colFieldMaps as $col => $objFunc) {
+                        $this->sheet->setCellValueByColumnAndRow($col, $row, $objFunc($list));
+                    }
+                }
+            });
+    }
+
+}

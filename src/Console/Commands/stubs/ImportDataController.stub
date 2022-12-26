@@ -1,0 +1,44 @@
+<?php
+
+namespace App\VoyagerDataTransport\Http\Controllers;
+
+use VoyagerDataTransport\Traits\VoyagerImportData;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
+class {{ class }} extends Controller
+{
+    use VoyagerImportData;
+
+    const COL_NAME_01 = 0;
+
+    public function index()
+    {
+        $this->authorize('browse_import_{{ tableName }}');
+        return view('vendor.voyager.{{ tableName }}.import-data', []);
+    }
+
+    protected function setRedirectUrl()
+    {
+        $this->_redirectUrl = '/admin/{{ tableName }}';
+    }
+
+    protected function importData(array $data)
+    {
+        try {
+            DB::transaction(
+                function () use ($data) {
+                    DB::table('{{ tableName }}')
+                        ->insert([
+                            'colName01' => $data[self::COL_NAME_01],
+                        ]);
+                }
+            );
+            return ['status' => true, 'message' => 'data insert success'];
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return ['status' => false, 'message' => "{$e->getMessage()}"];
+        }
+    }
+
+}

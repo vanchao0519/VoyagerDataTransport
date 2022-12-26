@@ -8,5 +8,21 @@
             "email": "vanchao0519@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^7.3",
+        "phpoffice/phpspreadsheet": "^1.18"
+      },
+    
+    "autoload": {
+        "psr-4": {
+            "VoyagerDataTransport\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VoyagerDataTransport\\Providers\\VoyagerDataTransportProvider"
+            ]
+        }
+    }
 }
