@@ -1,5 +1,6 @@
 # VoyagerDataTransport
-A  command line to generate voyager  data import to database and export to  file (excel, csv, pdf)
+A command line tools to generate the Controller and the View file 
+which can import data to database and export data to file (excel, csv ,pdf)
 <br>
 ## How to use
 ```php
