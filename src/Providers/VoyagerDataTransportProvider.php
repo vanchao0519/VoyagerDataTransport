@@ -6,8 +6,10 @@ use Illuminate\Support\ServiceProvider;
 use VoyagerDataTransport\Console\Commands\VoyagerDataTransport;
 use VoyagerDataTransport\Console\Commands\Controllers\VoyagerDataExport;
 use VoyagerDataTransport\Console\Commands\Controllers\VoyagerDataImport;
+use VoyagerDataTransport\Console\Commands\Views\VoyagerDataBrowseView;
+use VoyagerDataTransport\Console\Commands\Views\VoyagerDataImportView;
 
-class CmdHelloWorldProvider extends ServiceProvider
+class VoyagerDataTransportProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -31,6 +33,8 @@ class CmdHelloWorldProvider extends ServiceProvider
             VoyagerDataTransport::class,
             VoyagerDataImport::class,
             VoyagerDataExport::class,
+            VoyagerDataBrowseView::class,
+            VoyagerDataImportView::class,
         ]);
     }
 }
