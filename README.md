@@ -19,3 +19,5 @@ composer require vanchao0519/voyager-data-transport
 ```php
 php artisan voyager:data:transport <data-tabel-name>
 ```
+## More
+Here is a <a href="https://github.com/vanchao0519/VoyagerDataTransportDemo">demostrate</a> more details after you execute the command line of this project
