@@ -16,8 +16,26 @@ composer require tcg/voyager
 composer require vanchao0519/voyager-data-transport
 ```
 ## How to use
+The fastest way:
 ```php
 php artisan voyager:data:transport <data-tabel-name>
 ```
+You can also used the single command which you want:
+- Create import controller file
+```php
+php artisan voyager:data:import:controller <data-tabel-name>
+```
+- Create export controller file
+```php
+php artisan voyager:data:export:controller <data-tabel-name>
+```
+- Create browse view file
+```php
+php artisan voyager:data:transport:browse:view <data-tabel-name>
+```
+- Create import data view file
+```php
+php artisan voyager:data:transport:import-data:view <data-tabel-name>
+```
 ## More
-Here is a <a href="https://github.com/vanchao0519/VoyagerDataTransportDemo">demostrate</a> more details after you execute the command line of this project
+Here is a <a href="https://github.com/vanchao0519/VoyagerDataTransportDemo">demonstrate</a> more details after you execute the command line of this project
