@@ -52,8 +52,6 @@ class VoyagerDataExport extends GeneratorCommand
      */
     public function handle()
     {
-//        $this->info("voyager:data:export table name is: {$this->argument('tableName')}");
-
         $tableName = strtolower($this->getNameInput());
 
         $name = $this->qualifyClass($this->getNameInput());
