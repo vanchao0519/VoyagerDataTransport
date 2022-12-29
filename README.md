@@ -1,11 +1,11 @@
 # VoyagerDataTransport
 A command line tools to generate the Controller and the View files 
-which can import data to database and export data to the file which extension included excel, csv and pdf
+which can import data to database and export data to the file which extension included excel, csv and pdf.
 <br>
-Notice that the package is based on <a href="https://voyager.devdojo.com/">Voyager</a>
+Notice that the package is based on <a href="https://voyager.devdojo.com/">Voyager</a>.
 <br>
 ## Before install
-You must confirm that the voyager package installed before
+You must confirm that the voyager package installed before.
 <br>
 How to install the voyager package:
 ```php
