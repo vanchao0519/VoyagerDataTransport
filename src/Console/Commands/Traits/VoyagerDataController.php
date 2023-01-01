@@ -1,5 +1,4 @@
 <?php
-
 namespace VoyagerDataTransport\Console\Commands\Traits;
 
 use Illuminate\Support\Str;
@@ -66,6 +65,12 @@ trait VoyagerDataController
         return $model->id;
     }
 
+    /**
+     * Check export permission record is exist.
+     *
+     * @param  string  $tableName
+     * @return boolean
+     */
     protected function isExportPermissionExist($tableName)
     {
         return $this->isPermissionExist($this->_keyPre, $tableName);
@@ -102,6 +107,12 @@ trait VoyagerDataController
         return $this->replaceClass($stub, $name);
     }
 
+    /**
+     * Get the controller name .
+     *
+     * @param  string  $name 
+     * @return string
+     */    
     protected function getControllerName($name)
     {
         $name = strtolower($name);
