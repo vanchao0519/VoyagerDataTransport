@@ -18,9 +18,17 @@
     },
     "autoload": {
         "psr-4": {
-            "VoyagerDataTransport\\": "src/",
-            "VoyagerDataTransportTest\\": "test/"
+            "VoyagerDataTransport\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "VoyagerDataTransport\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --testdox --colors=always",
+        "test:coverage": "vendor/bin/phpunit --coverage-html build/coverage"
     },
     "extra": {
         "laravel": {
