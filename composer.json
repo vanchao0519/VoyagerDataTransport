@@ -10,11 +10,16 @@
     ],
     "require": {
         "php": "^7.3",
-        "phpoffice/phpspreadsheet": "^1.18"
+        "phpoffice/phpspreadsheet": "^1.18",
+        "illuminate/console": "^8.83"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
-            "VoyagerDataTransport\\": "src/"
+            "VoyagerDataTransport\\": "src/",
+            "VoyagerDataTransportTest\\": "test/"
         }
     },
     "extra": {
