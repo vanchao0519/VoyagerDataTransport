@@ -1,6 +1,15 @@
 {
     "name": "vanchao0519/voyager-data-transport",
     "description": "A command line to generate voyager Controller and View files to import and export data with excel and database",
+    "type": "library",
+    "keywords": [
+        "voyager extend",
+        "commmand line",
+        "data import from csv and excel file",
+        "data export to csv, excel and pdf extension",
+        "code generator"
+    ],
+    "homepage": "https://github.com/vanchao0519/VoyagerDataTransport",
     "license": "MIT",
     "authors": [
         {
