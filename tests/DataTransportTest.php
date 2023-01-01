@@ -30,10 +30,11 @@ class DataTransportTest extends \PHPUnit\Framework\TestCase {
         return "{$this->_controllerNamePre}{$this->_tableNameToControllerName($this->_tableName)}";
     }
 
-	public function test_getControllerName() {
+    public function test_getControllerName ()
+    {
         $expected = $this->_expectedControllerName();
         $actual = $this->getControllerName($this->_tableName);
         $this->assertEquals($expected, $actual);
-	}
+    }
 
 }
