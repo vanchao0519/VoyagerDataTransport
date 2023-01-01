@@ -8,6 +8,8 @@ use Illuminate\Console\GeneratorCommand;
 class VoyagerDataImport extends GeneratorCommand
 {
 
+    use VoyagerDataController;
+
     const CREATING_PERMISSION_RECORD_INFO = 'Import permission data record create successful!';
 
     const PERMISSION_RECORD_EXISTS_INFO = 'Import permission data record existed!';
@@ -19,8 +21,6 @@ class VoyagerDataImport extends GeneratorCommand
     const DO_NOT_REWRITE_CODE = -20;
 
     const ALL_PROCESS_SUCCESS_CODE = 0;
-
-    use VoyagerDataController;
 
     /**
      * The name and signature of the console command.
@@ -36,9 +36,33 @@ class VoyagerDataImport extends GeneratorCommand
      */
     protected $description = 'Generate voyager data import controller';
 
+    /**
+     * Controller name pre.
+     *
+     * @var string
+     */    
     protected $_controllerNamePre = 'Import';
 
+    /**
+     * Permission record key pre.
+     *
+     * @var string
+     */    
     protected $_keyPre = 'browse_import_';
+
+    /**
+     * Controller file path.
+     *
+     * @var string
+     */
+    protected $_filePath = 'app/VoyagerDataTransport/Http/Controllers/';
+
+    /**
+     * Controller file extension.
+     *
+     * @var string
+     */
+    protected $_fileExt = '.php';    
 
     protected function getStub()
     {

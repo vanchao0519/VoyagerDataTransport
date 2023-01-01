@@ -135,11 +135,7 @@ trait VoyagerDataController
     {
         $tableName = $this->getNameInput();
 
-        $path = 'app/VoyagerDataTransport/Http/Controllers/';
-
-        $ext = ".php";
-
-        $fileName = "{$path}{$this->getControllerName($tableName)}{$ext}";
+        $fileName = "{$this->_filePath}{$this->getControllerName($tableName)}{$this->_fileExt}";
 
         return file_exists($fileName);
     }
