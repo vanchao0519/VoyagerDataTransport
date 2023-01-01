@@ -6,7 +6,7 @@
         "voyager extend",
         "commmand line",
         "data import from csv and excel file",
-        "data export to csv, excel and pdf extension",
+        "data export to csv excel and pdf extension",
         "code generator"
     ],
     "homepage": "https://github.com/vanchao0519/VoyagerDataTransport",
