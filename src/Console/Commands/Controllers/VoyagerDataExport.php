@@ -2,12 +2,14 @@
 
 namespace VoyagerDataTransport\Console\Commands\Controllers;
 
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
 use Illuminate\Console\GeneratorCommand;
 
 class VoyagerDataExport extends GeneratorCommand
 {
 
+    use VoyagerDataCommon;
     use VoyagerDataController;
 
     const CREATING_PERMISSION_RECORD_INFO = 'Export permission data record create successful!';

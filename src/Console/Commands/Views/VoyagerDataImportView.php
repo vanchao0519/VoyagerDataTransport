@@ -2,12 +2,14 @@
 
 namespace VoyagerDataTransport\Console\Commands\Views;
 
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataView;
 use Illuminate\Console\GeneratorCommand;
 
 class VoyagerDataImportView extends GeneratorCommand
 {
 
+    use VoyagerDataCommon;
     use VoyagerDataView;
 
     /**
