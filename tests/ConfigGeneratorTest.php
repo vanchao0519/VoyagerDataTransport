@@ -147,7 +147,8 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
      * @param  string  $_tableName  This data table name
      * @return string
      */    
-    private function _controllerNameGenerate (string $_namePre, string $_tableName): string {
+    private function _controllerNameGenerate (string $_namePre, string $_tableName): string 
+    {
         $tableName = strtolower($_tableName);
         $tempArr = explode("_", $tableName);
         $baseName = '';
