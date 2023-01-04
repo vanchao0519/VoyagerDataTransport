@@ -83,11 +83,12 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
             }
         }
 
-        $expected = count($_routeMappings[self::ROUTE_GET]) + count($_routeMappings[self::ROUTE_POST]);
-        $actual = count($_routeConfig[self::ROUTE_GET]) + count($_routeConfig[self::ROUTE_POST]);
+        $expectedCounter = count($_routeMappings[self::ROUTE_GET]) + count($_routeMappings[self::ROUTE_POST]);
+        $actualCounter = count($_routeConfig[self::ROUTE_GET]) + count($_routeConfig[self::ROUTE_POST]);
 
         $this->assertIsArray($_routeConfig);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($this->_expectedRouteConfig(), $_routeConfig);
+        $this->assertEquals($expectedCounter, $actualCounter);
     }
 
     /**
@@ -167,6 +168,41 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
         }
 
         return "{$_namePre}{$baseName}";
+    }
+
+    /**
+     * Get expected route config.
+     *
+     * @return array
+     */    
+    private function _expectedRouteConfig (): array
+    {
+        $_getMapping = $this->_getMapping();
+        $_postMapping = $this->_postMapping();
+
+        $_tableName = $this->_tableName;
+
+        $_getConfig = [];
+        $_postConfig = [];
+
+        foreach ($_getMapping as $_mKey => $_functions) {
+            foreach ($_functions as $_fKey => $_function) {
+                $_getConfig[$_mKey][$_fKey] = $_function($_tableName);
+            }
+        }
+
+        foreach ($_postMapping as $_mKey => $_functions) {
+            foreach ($_functions as $_fKey => $_function) {
+                $_postConfig[$_mKey][$_fKey] = $_function($_tableName);
+            }
+        }
+
+        $_config = [
+            'get' => $_getConfig,
+            'post' => $_postConfig,
+        ];
+
+        return $_config;
     }
 
 }
