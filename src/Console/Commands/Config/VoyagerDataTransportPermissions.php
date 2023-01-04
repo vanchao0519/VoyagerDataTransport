@@ -11,6 +11,8 @@ class VoyagerDataTransportPermissions extends GeneratorCommand
     use VoyagerDataCommon;
 
     const ALL_PROCESS_SUCCESS_CODE = 0;
+    const PERMISSION_PRE_IMPORT = 'browse_import_';
+    const PERMISSION_PRE_EXPORT = 'browse_export_';
 
     /**
      * The name and signature of the console command.
@@ -66,8 +68,8 @@ class VoyagerDataTransportPermissions extends GeneratorCommand
         };
 
         $_permissionPre = [
-            'browse_import_',
-            'browse_export_'
+            self::PERMISSION_PRE_IMPORT,
+            self::PERMISSION_PRE_EXPORT,
         ];
 
         $_config = [];
