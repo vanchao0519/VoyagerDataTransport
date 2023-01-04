@@ -23,7 +23,8 @@
         "illuminate/console": "^8.83"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "tcg/voyager": "1.6"
     },
     "autoload": {
         "psr-4": {
