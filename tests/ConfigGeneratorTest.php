@@ -9,6 +9,9 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
     const ROUTE_GET = 'get';
     const ROUTE_POST = 'post';
 
+    const PERMISSION_PRE_IMPORT = 'browse_import_';
+    const PERMISSION_PRE_EXPORT = 'browse_export_';
+
     private $_tableName = 'posts';
 
     private $_importPre = 'Import';
@@ -34,19 +37,25 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
         };
 
         $_permissionPre = [
-            'browse_import_',
-            'browse_export_'
+            self::PERMISSION_PRE_IMPORT,
+            self::PERMISSION_PRE_EXPORT,
         ];
 
         foreach ($_permissionPre as $_pre) {
             $_permissionConfig[] = $_func($_pre, $_tableName);
         }
 
-        $expected = count($_permissionPre);
-        $actual = count($_permissionConfig);
+        $expectedCounter = count($_permissionPre);
+        $actualCounter = count($_permissionConfig);
+
+        $expectedConfig = [
+            self::PERMISSION_PRE_IMPORT . $_tableName,
+            self::PERMISSION_PRE_EXPORT . $_tableName,
+        ];
 
         $this->assertIsArray($_permissionConfig);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expectedCounter, $actualCounter);
+        $this->assertEquals($expectedConfig, $_permissionConfig);
 
     }
 
