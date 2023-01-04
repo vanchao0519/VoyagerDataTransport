@@ -8,6 +8,7 @@ use VoyagerDataTransport\Console\Commands\Controllers\VoyagerDataExport;
 use VoyagerDataTransport\Console\Commands\Controllers\VoyagerDataImport;
 use VoyagerDataTransport\Console\Commands\Views\VoyagerDataBrowseView;
 use VoyagerDataTransport\Console\Commands\Views\VoyagerDataImportView;
+use VoyagerDataTransport\Console\Commands\Config\VoyagerDataTransportPermissions;
 
 class VoyagerDataTransportProvider extends ServiceProvider
 {
@@ -35,6 +36,7 @@ class VoyagerDataTransportProvider extends ServiceProvider
             VoyagerDataExport::class,
             VoyagerDataBrowseView::class,
             VoyagerDataImportView::class,
+            VoyagerDataTransportPermissions::class,
         ]);
     }
 }
