@@ -69,8 +69,8 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
         $_tableName = $this->_tableName;
 
         $_routeMappings = [
-            self::ROUTE_GET => $this->_getMapping(),
-            self::ROUTE_POST => $this->_postMapping(),
+            self::ROUTE_GET => $this->_getMapping($_tableName),
+            self::ROUTE_POST => $this->_postMapping($_tableName),
         ];
 
         $_routeConfig = [];
@@ -78,46 +78,95 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
         foreach ($_routeMappings as $_verb => $_mappings) {
             foreach ($_mappings as $_mKey => $_functions) {
                 foreach ($_functions as $_fKey => $_function) {
-                    $_routeConfig[$_verb][$_mKey][$_fKey] = $_function($_tableName) ;
+                    $_routeConfig[$_verb][$_mKey][$_fKey] = $_function() ;
                 }
             }
         }
 
-        $expectedCounter = count($_routeMappings[self::ROUTE_GET]) + count($_routeMappings[self::ROUTE_POST]);
-        $actualCounter = count($_routeConfig[self::ROUTE_GET]) + count($_routeConfig[self::ROUTE_POST]);
-
         $this->assertIsArray($_routeConfig);
-        $this->assertEquals($this->_expectedRouteConfig(), $_routeConfig);
-        $this->assertEquals($expectedCounter, $actualCounter);
+
+        $this->assertTrue( array_key_exists ('get', $_routeConfig) );
+        $this->assertTrue( array_key_exists ('post', $_routeConfig) );
+
+        $_contentKeys = [
+            'url',
+            'controllerName',
+            'actionName',
+            'alias',
+        ];
+
+        $_keyAndValueExist = function ( string $_key, array $_dataSet ): void {
+            $_isValid = isset($_dataSet[$_key]) && !empty($_dataSet[$_key]);
+            $this->assertTrue( $_isValid );
+        };
+
+        $_isValueString = function (string $_key, array $_dataSet): void {
+            $this->assertIsString( $_dataSet[$_key] );
+        };
+
+        $_getTestResult = function (array $dataSet) use ($_contentKeys, $_keyAndValueExist, $_isValueString): void {
+
+            foreach ($_contentKeys as $contentKey) {
+                $_keyAndValueExist ( $contentKey, $dataSet );
+                $_isValueString ( $contentKey, $dataSet );
+            }
+
+            $this->assertEquals( count ( $_contentKeys ), count ( $dataSet ) );
+        };
+
+        $_loopTest = function ( array $dataSet ) use ( $_getTestResult ): void {
+            $counter = count( $dataSet );
+
+            while ( $counter > 0 ) {
+                $currentData = current($dataSet);
+                $_getTestResult($currentData);
+                next($dataSet);
+                $counter--;
+            }
+            reset($dataSet);
+        };
+
+        $this->assertEquals(2, count ( $_routeConfig['get'] ) );
+        $_loopTest($_routeConfig['get']);
+
+        $this->assertEquals(1, count ( $_routeConfig['post'] ) );
+        $_loopTest($_routeConfig['post']);
     }
 
     /**
      * Create [GET] route config data stub.
      *
+     * @param  string  $tableName 
      * @return array
      */
-    private function _getMapping (): array
+    private function _getMapping (string $tableName): array
     {
         $_mapping = [
             [
-                'url' => function ($tableName) {
+                'url' => function () use ($tableName) {
                     return "{$this->_urlImportPre}{$tableName}";
                 },
-                'controllerName' => function ($tableName) {
+                'controllerName' => function () use ($tableName) {
                     return $this->_controllerNameGenerate($this->_importPre, $tableName);
                 },
-                'alias' => function ($tableName) {
+                'actionName' => function () {
+                     return 'index';
+                },
+                'alias' => function () use ($tableName) {
                     return "{$this->_aliasImportPre}{$tableName}";
                 },
             ],
             [
-                'url' => function ($tableName) {
+                'url' => function () use ($tableName) {
                     return "{$this->_urlExportPre}{$tableName}";
                 },
-                'controllerName' => function ($tableName) {
+                'controllerName' => function () use ($tableName) {
                     return $this->_controllerNameGenerate($this->_exportPre, $tableName);
                 },
-                'alias' => function ($tableName) {
+                'actionName' => function () {
+                    return 'export';
+                },
+                'alias' => function () use ($tableName) {
                     return "{$this->_aliasExportPre}{$tableName}";
                 },
             ],
@@ -126,22 +175,26 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
         return $_mapping;
     }
 
+
     /**
      * Create [POST] route config data stub.
      *
      * @return array
      */
-    private function _postMapping (): array
+    private function _postMapping (string $tableName): array
     {
         $_mapping  = [
             [
-                'url' => function ($tableName) {
+                'url' => function () use ($tableName) {
                     return "{$this->_urlImportPre}{$tableName}/upload";
                 },
-                'controllerName' => function ($tableName) {
+                'controllerName' => function () use ($tableName) {
                     return $this->_controllerNameGenerate($this->_importPre, $tableName);
                 },
-                'alias' => function ($tableName) {
+                'actionName' => function () {
+                    return 'upload';
+                },
+                'alias' => function () use ($tableName) {
                     return "{$this->_aliasImportPre}{$tableName}.upload";
                 },
             ],
@@ -168,41 +221,6 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
         }
 
         return "{$_namePre}{$baseName}";
-    }
-
-    /**
-     * Get expected route config.
-     *
-     * @return array
-     */    
-    private function _expectedRouteConfig (): array
-    {
-        $_getMapping = $this->_getMapping();
-        $_postMapping = $this->_postMapping();
-
-        $_tableName = $this->_tableName;
-
-        $_getConfig = [];
-        $_postConfig = [];
-
-        foreach ($_getMapping as $_mKey => $_functions) {
-            foreach ($_functions as $_fKey => $_function) {
-                $_getConfig[$_mKey][$_fKey] = $_function($_tableName);
-            }
-        }
-
-        foreach ($_postMapping as $_mKey => $_functions) {
-            foreach ($_functions as $_fKey => $_function) {
-                $_postConfig[$_mKey][$_fKey] = $_function($_tableName);
-            }
-        }
-
-        $_config = [
-            'get' => $_getConfig,
-            'post' => $_postConfig,
-        ];
-
-        return $_config;
     }
 
 }
