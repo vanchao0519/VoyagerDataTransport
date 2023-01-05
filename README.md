@@ -5,12 +5,8 @@ which can import data to database and export data to the file which extension in
 Notice that the package is based on <a href="https://voyager.devdojo.com/">Voyager</a>.
 <br>
 ## Before install
-You must confirm that the voyager package installed before.
+You must confirm that laravel project created and the voyager package installed before.
 <br>
-How to install the voyager package:
-```php
-composer require tcg/voyager
-```
 ## How to install the VoyagerDataTransport
 ```php
 composer require vanchao0519/voyager-data-transport
