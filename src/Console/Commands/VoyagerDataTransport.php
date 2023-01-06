@@ -32,6 +32,8 @@ class VoyagerDataTransport extends Command
         $this->call("voyager:data:export:controller", ['tableName' => $tableName]);
         $this->call("voyager:data:transport:browse:view", ['tableName' => $tableName]);
         $this->call("voyager:data:transport:import-data:view", ['tableName' => $tableName]);
+        $this->call("voyager:data:transport:permission:detail:config", ['tableName' => $tableName]);
+        $this->call("voyager:data:transport:route:detail:config", ['tableName' => $tableName]);
         return 0;
     }
 
