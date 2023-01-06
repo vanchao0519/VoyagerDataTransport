@@ -33,5 +33,13 @@ php artisan voyager:data:transport:browse:view <data-tabel-name>
 ```php
 php artisan voyager:data:transport:import-data:view <data-tabel-name>
 ```
+- Create voyager data transport permission detail config file
+```php
+php artisan voyager:data:transport:permission:detail:config <data-tabel-name>
+```
+- Create voyager data transport route detail config file
+```php
+php artisan voyager:data:transport:route:detail:config <data-tabel-name>
+```
 ## More
 Here is a <a href="https://github.com/vanchao0519/VoyagerDataTransportDemo">demonstrate</a> more details after you execute the command line of this project
