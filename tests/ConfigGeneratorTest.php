@@ -134,6 +134,59 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
     }
 
     /**
+     * Test route config set replace stub.
+     *
+     * @return void
+     */
+    public function test_set_replace_stub_route() {
+
+        $_tableName = $this->_tableName;
+
+        $_routeMappings = [
+            'get' => $this->_getMapping($_tableName),
+            'post' => $this->_postMapping($_tableName),
+        ];
+
+        $config = [];
+
+        foreach ($_routeMappings as $_verb => $_mappings) {
+            foreach ($_mappings as $_mKey => $_functions) {
+                foreach ($_functions as $_fKey => $_function) {
+                    $config[$_verb][$_mKey][$_fKey] = $_function() ;
+                }
+            }
+        }
+
+        $recordArr = array_merge($config['get'], $config['post']);
+
+        $search = [];
+        $replace = [];
+
+        foreach ($recordArr as $key => $records) {
+            foreach ($records as $pre => $record) {
+                $search[] = $this->_getSearchValue($key + 1, "{$pre}_");
+                $replace[] = $record;
+            }
+        }
+
+        $this->assertIsArray($recordArr);
+        $this->assertIsArray($search);
+        $this->assertIsArray($replace);
+        $this->assertEquals(count($search), count($replace));
+    }
+
+    /**
+     * Get search key.
+     *
+     * @param  int  $key 
+     * @param  string  $pre
+     * @return string
+     */
+    private function _getSearchValue (int $key, string $pre): string {
+        return "{{ {$pre}{$key} }}";
+    }
+
+    /**
      * Create [GET] route config data stub.
      *
      * @param  string  $tableName 
