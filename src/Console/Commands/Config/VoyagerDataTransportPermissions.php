@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\VoyagerDataTransport\Config;
+namespace VoyagerDataTransport\Console\Commands\Config;
 
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use Illuminate\Console\GeneratorCommand;
