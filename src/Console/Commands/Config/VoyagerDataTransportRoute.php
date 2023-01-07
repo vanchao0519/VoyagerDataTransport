@@ -2,7 +2,7 @@
 
 namespace VoyagerDataTransport\Console\Commands\Config;
 
-use App\Console\Commands\VoyagerDataTransport\Traits\VoyagerDataCommon;
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use Illuminate\Console\GeneratorCommand;
 
 class VoyagerDataTransportRoute extends GeneratorCommand
@@ -18,6 +18,8 @@ class VoyagerDataTransportRoute extends GeneratorCommand
 
     private $_aliasImportPre = 'voyager.browse_import_';
     private $_aliasExportPre = 'voyager.browse_export_';
+
+    private $_uploadPre = 'voyager.import_';
 
     const ALL_PROCESS_SUCCESS_CODE = 0;
 
@@ -146,7 +148,7 @@ class VoyagerDataTransportRoute extends GeneratorCommand
                     return 'upload';
                 },
                 'alias' => function () use ($tableName) {
-                    return "{$this->_aliasImportPre}{$tableName}.upload";
+                    return "{$this->_uploadPre}{$tableName}.upload";
                 },
             ],
         ];
