@@ -46,10 +46,17 @@ class VoyagerDataTransportPermissions extends GeneratorCommand
     {
         $config = $this->_generateConfig();
 
-        $config01 = $config[0];
-        $config02 = $config[1];
+        $getKeyString = function (int $key, string $pre): string {
+            return "{{ {$pre}{$key} }}";
+        };
 
-        return str_replace(['{{ config01 }}', '{{ config02 }}'], [$config01, $config02], $stub);
+        $search = [];
+
+        foreach ($config as $key => $value) {
+            $search[$key] = $getKeyString($key + 1, 'config_');
+        }
+
+        return str_replace($search, $config, $stub);
     }
 
     protected function buildConfig()
