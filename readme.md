@@ -41,5 +41,9 @@ php artisan voyager:data:transport:permission:detail:config <data-tabel-name>
 ```php
 php artisan voyager:data:transport:route:detail:config <data-tabel-name>
 ```
+- Publish config files to app/VoyagerDataTransport/config/permissions and app/VoyagerDataTransport/config/route folder
+```php
+php artisan voyager:data:transport:publish:config
+```
 ## More
 Here is a <a href="https://github.com/vanchao0519/VoyagerDataTransportDemo">demonstrate</a> more details after you execute the command line of this project
