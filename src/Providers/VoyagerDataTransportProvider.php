@@ -10,6 +10,7 @@ use VoyagerDataTransport\Console\Commands\Views\VoyagerDataBrowseView;
 use VoyagerDataTransport\Console\Commands\Views\VoyagerDataImportView;
 use VoyagerDataTransport\Console\Commands\Config\VoyagerDataTransportPermissions;
 use VoyagerDataTransport\Console\Commands\Config\VoyagerDataTransportRoute;
+use VoyagerDataTransport\Services\GatesRegService;
 
 class VoyagerDataTransportProvider extends ServiceProvider
 {
@@ -31,6 +32,14 @@ class VoyagerDataTransportProvider extends ServiceProvider
     public function boot()
     {
         //
+
+        $_publishPath = 'VoyagerDataTransport/config';
+
+        $this->publishes([
+            dirname(__DIR__, 1) . "/config/permissions/config.php" => app_path("{$_publishPath}/permissions/config.php"),
+            dirname(__DIR__, 1) . "/config/route/config.php" => app_path("{$_publishPath}/route/config.php"),
+        ]);
+
         $this->commands([
             VoyagerDataTransport::class,
             VoyagerDataImport::class,
@@ -40,5 +49,10 @@ class VoyagerDataTransportProvider extends ServiceProvider
             VoyagerDataTransportPermissions::class,
             VoyagerDataTransportRoute::class,
         ]);
+
+        (new GatesRegService)->handle();
+
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
     }
 }
