@@ -10,6 +10,7 @@ use VoyagerDataTransport\Console\Commands\Views\VoyagerDataBrowseView;
 use VoyagerDataTransport\Console\Commands\Views\VoyagerDataImportView;
 use VoyagerDataTransport\Console\Commands\Config\VoyagerDataTransportPermissions;
 use VoyagerDataTransport\Console\Commands\Config\VoyagerDataTransportRoute;
+use VoyagerDataTransport\Console\Commands\Config\VoyagerDataTransportPublish;
 use VoyagerDataTransport\Services\GatesRegService;
 
 class VoyagerDataTransportProvider extends ServiceProvider
@@ -48,6 +49,7 @@ class VoyagerDataTransportProvider extends ServiceProvider
             VoyagerDataImportView::class,
             VoyagerDataTransportPermissions::class,
             VoyagerDataTransportRoute::class,
+            VoyagerDataTransportPublish::class,
         ]);
 
         (new GatesRegService)->handle();

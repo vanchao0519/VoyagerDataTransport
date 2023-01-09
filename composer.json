@@ -37,10 +37,7 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit --testdox --colors=always",
-        "post-autoload-dump": [
-            "@php artisan vendor:publish --provider='VoyagerDataTransport\\Providers\\VoyagerDataTransportProvider"
-        ]
+        "test": "vendor/bin/phpunit --testdox --colors=always"
     },
     "extra": {
         "laravel": {
