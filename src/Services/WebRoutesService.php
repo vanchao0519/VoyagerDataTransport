@@ -44,7 +44,7 @@ class WebRoutesService
                     $dataSet[self::ACTION]
                 ])
                     ->name($dataSet[self::ALIAS])
-                    ->middleware('admin.user');
+                    ->middleware('web');
             }
         }
     }
