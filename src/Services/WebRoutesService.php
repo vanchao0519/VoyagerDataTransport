@@ -31,7 +31,7 @@ class WebRoutesService
 
     public function getConfig ()
     {
-        $file = $this->_getAppPath() . '/app/VoyagerDataTransport/config/route/config.php';
+        $file = $this->_getAppPath() . '/VoyagerDataTransport/config/route/config.php';
         return $this->_getConfig($file);
     }
 

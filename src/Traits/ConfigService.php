@@ -5,7 +5,8 @@ namespace VoyagerDataTransport\Traits;
 trait ConfigService {
 
     protected function _getAppPath (): string {
-        return dirname(__DIR__, 5);
+        $path = app_path();
+        return $path;
     }
 
     protected function _getConfig ( string $file = '' ) {

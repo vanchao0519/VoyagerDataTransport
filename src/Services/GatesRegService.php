@@ -25,7 +25,7 @@ class GatesRegService
 
     public function getConfig ()
     {
-        $file = $this->_getAppPath() . '/app/VoyagerDataTransport/config/permissions/config.php';
+        $file = $this->_getAppPath() . '/VoyagerDataTransport/config/permissions/config.php';
         return $this->_getConfig($file);
     }
 
