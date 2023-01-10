@@ -1,4 +1,6 @@
 # VoyagerDataTransport
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvanchao0519%2FVoyagerDataTransport.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvanchao0519%2FVoyagerDataTransport?ref=badge_shield)
+
 A command line tools to generate the Controller and the View files 
 which can import data to database and export data to the file which extension included excel, csv and pdf.
 <br>
@@ -47,3 +49,6 @@ php artisan voyager:data:transport:publish:config
 ```
 ## More
 Here is a <a href="https://github.com/vanchao0519/VoyagerDataTransportDemo">demonstrate</a> more details after you execute the command line of this project
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvanchao0519%2FVoyagerDataTransport.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvanchao0519%2FVoyagerDataTransport?ref=badge_large)
