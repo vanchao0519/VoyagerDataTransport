@@ -32,7 +32,7 @@ class WebRoutesService implements RouteParameters
 
     private function regRoute (string $verb, array $dataSets): void {
         $verb = strtolower($verb);
-        if (in_array($verb, ['get', 'post'])) {
+        if (in_array($verb, [self::GET, self::POST])) {
             foreach ($dataSets as $dataSet) {
                 Route::$verb($dataSet[self::URL], [
                     $dataSet[self::CONTROLLER],
