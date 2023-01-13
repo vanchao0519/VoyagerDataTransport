@@ -4,9 +4,10 @@ namespace VoyagerDataTransport\Console\Commands\Config;
 
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use Illuminate\Console\GeneratorCommand;
+use VoyagerDataTransport\Contracts\ICommandStatus;
 use VoyagerDataTransport\Contracts\IRouteParameters;
 
-class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParameters
+class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParameters, ICommandStatus
 {
 
     use VoyagerDataCommon;
@@ -21,8 +22,6 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
     private $_aliasExportPre = 'voyager.browse_export_';
 
     private $_uploadPre = 'voyager.import_';
-
-    const ALL_PROCESS_SUCCESS_CODE = 0;
 
     /**
      * The name and signature of the console command.
