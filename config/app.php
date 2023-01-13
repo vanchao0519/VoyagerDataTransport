@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        VoyagerDataTransport\Providers\VoyagerDataTransportProvider::class,
 
         /*
          * Application Service Providers...
