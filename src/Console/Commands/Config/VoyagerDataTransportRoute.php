@@ -4,8 +4,9 @@ namespace VoyagerDataTransport\Console\Commands\Config;
 
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use Illuminate\Console\GeneratorCommand;
+use VoyagerDataTransport\Contracts\RouteParameters;
 
-class VoyagerDataTransportRoute extends GeneratorCommand
+class VoyagerDataTransportRoute extends GeneratorCommand implements RouteParameters
 {
 
     use VoyagerDataCommon;
@@ -102,30 +103,30 @@ class VoyagerDataTransportRoute extends GeneratorCommand
     {
         $_mapping = [
             [
-                'url' => function () use ($tableName) {
+                self::URL => function () use ($tableName) {
                     return "{$this->_urlImportPre}{$tableName}";
                 },
-                'controllerName' => function () use ($tableName) {
+                self::CONTROLLER => function () use ($tableName) {
                     return $this->_controllerNameGenerate($this->_importPre, $tableName);
                 },
-                'actionName' => function () {
+                self::ACTION => function () {
                     return 'index';
                 },
-                'alias' => function () use ($tableName) {
+                self::ALIAS => function () use ($tableName) {
                     return "{$this->_aliasImportPre}{$tableName}";
                 },
             ],
             [
-                'url' => function () use ($tableName) {
+                self::URL => function () use ($tableName) {
                     return "{$this->_urlExportPre}{$tableName}";
                 },
-                'controllerName' => function () use ($tableName) {
+                self::CONTROLLER => function () use ($tableName) {
                     return $this->_controllerNameGenerate($this->_exportPre, $tableName);
                 },
-                'actionName' => function () {
+                self::ACTION => function () {
                     return 'export';
                 },
-                'alias' => function () use ($tableName) {
+                self::ALIAS => function () use ($tableName) {
                     return "{$this->_aliasExportPre}{$tableName}";
                 },
             ],
@@ -138,16 +139,16 @@ class VoyagerDataTransportRoute extends GeneratorCommand
     {
         $_mapping = [
             [
-                'url' => function () use ($tableName) {
+                self::URL => function () use ($tableName) {
                     return "{$this->_urlImportPre}{$tableName}/upload";
                 },
-                'controllerName' => function () use ($tableName) {
+                self::CONTROLLER => function () use ($tableName) {
                     return $this->_controllerNameGenerate($this->_importPre, $tableName);
                 },
-                'actionName' => function () {
+                self::ACTION => function () {
                     return 'upload';
                 },
-                'alias' => function () use ($tableName) {
+                self::ALIAS => function () use ($tableName) {
                     return "{$this->_uploadPre}{$tableName}.upload";
                 },
             ],

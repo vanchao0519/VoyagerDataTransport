@@ -3,19 +3,15 @@
 
 namespace VoyagerDataTransport\Services;
 
+use VoyagerDataTransport\Contracts\RouteParameters;
 use VoyagerDataTransport\Traits\ConfigService;
 use Illuminate\Support\Facades\Route;
 
-class WebRoutesService
+class WebRoutesService implements RouteParameters
 {
     use ConfigService;
 
-    const URL = 'url';
-    const CONTROLLER = 'controllerName';
-    const ACTION = 'actionName';
-    const ALIAS = 'alias';
-
-    public function handle ()
+    public function handle (): void
     {
         $routes = $this->getConfig();
 
@@ -26,7 +22,6 @@ class WebRoutesService
                 }
             }
         }
-
     }
 
     public function getConfig ()
