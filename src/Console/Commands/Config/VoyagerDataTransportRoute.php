@@ -4,9 +4,9 @@ namespace VoyagerDataTransport\Console\Commands\Config;
 
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use Illuminate\Console\GeneratorCommand;
-use VoyagerDataTransport\Contracts\RouteParameters;
+use VoyagerDataTransport\Contracts\IRouteParameters;
 
-class VoyagerDataTransportRoute extends GeneratorCommand implements RouteParameters
+class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParameters
 {
 
     use VoyagerDataCommon;

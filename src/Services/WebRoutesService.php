@@ -3,11 +3,11 @@
 
 namespace VoyagerDataTransport\Services;
 
-use VoyagerDataTransport\Contracts\RouteParameters;
+use VoyagerDataTransport\Contracts\IRouteParameters;
 use VoyagerDataTransport\Traits\ConfigService;
 use Illuminate\Support\Facades\Route;
 
-class WebRoutesService implements RouteParameters
+class WebRoutesService implements IRouteParameters
 {
     use ConfigService;
 

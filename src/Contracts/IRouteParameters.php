@@ -3,7 +3,7 @@
 
 namespace VoyagerDataTransport\Contracts;
 
-interface RouteParameters
+interface IRouteParameters
 {
     const URL = 'url';
     const CONTROLLER = 'controllerName';

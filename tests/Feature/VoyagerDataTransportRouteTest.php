@@ -5,9 +5,9 @@ namespace Tests\Feature;
 use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
 use VoyagerDataTransport\Console\Commands\Config\VoyagerDataTransportRoute;
-use VoyagerDataTransport\Contracts\RouteParameters;
+use VoyagerDataTransport\Contracts\IRouteParameters;
 
-class VoyagerDataTransportRouteTest extends TestCase implements RouteParameters
+class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
 {
 
     use ParameterTrait;
