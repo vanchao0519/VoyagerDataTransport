@@ -4,15 +4,13 @@ namespace VoyagerDataTransport\Console\Commands\Config;
 
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use Illuminate\Console\GeneratorCommand;
+use VoyagerDataTransport\Contracts\ICommandStatus;
+use VoyagerDataTransport\Contracts\IPermissionParameters;
 
-class VoyagerDataTransportPermissions extends GeneratorCommand
+class VoyagerDataTransportPermissions extends GeneratorCommand implements IPermissionParameters, ICommandStatus
 {
 
     use VoyagerDataCommon;
-
-    const ALL_PROCESS_SUCCESS_CODE = 0;
-    const PERMISSION_PRE_IMPORT = 'browse_import_';
-    const PERMISSION_PRE_EXPORT = 'browse_export_';
 
     /**
      * The name and signature of the console command.

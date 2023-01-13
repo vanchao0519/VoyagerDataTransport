@@ -4,10 +4,10 @@ namespace Tests\Feature;
 
 use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
-use VoyagerDataTransport\Console\Commands\Config\VoyagerDataTransportRoute;
+use VoyagerDataTransport\Contracts\ICommandStatus;
 use VoyagerDataTransport\Contracts\IRouteParameters;
 
-class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
+class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters, ICommandStatus
 {
 
     use ParameterTrait;
@@ -20,7 +20,7 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
     public function test_command()
     {
         $this->artisan("voyager:data:transport:route:detail:config {$this->_getTableName()}")
-            ->assertExitCode(VoyagerDataTransportRoute::SUCCESS);
+            ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
     }
 
     /**
@@ -37,6 +37,7 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
     {
         $config = $this->_getConfig();
 
+        $this->assertIsArray($config);
         $this->assertArrayHasKey(self::GET, $config);
         $this->assertArrayHasKey(self::POST, $config);
     }
@@ -44,6 +45,8 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
     public function test_check_parameters_exists ()
     {
         $config = $this->_getConfig();
+        $this->assertIsArray($config);
+
 
         $checkArrayValidate = function ($configs) {
             foreach ($configs as $_config) {
@@ -58,7 +61,12 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
             }
         };
 
+        $this->assertIsArray($config[self::GET]);
+        $this->assertGreaterThan(0, count($config[self::GET]));
         $checkArrayValidate($config[self::GET]);
+
+        $this->assertIsArray($config[self::POST]);
+        $this->assertGreaterThan(0, count($config[self::POST]));
         $checkArrayValidate($config[self::POST]);
     }
 
