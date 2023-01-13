@@ -15,6 +15,11 @@ public/hot
 public_html/storage
 public_html/hot
 
+# For test only
+app/Models/User.php
+routes/web.php
+config/voyager.php
+
 storage/*.key
 .env
 Homestead.yaml
