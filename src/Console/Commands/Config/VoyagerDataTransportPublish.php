@@ -3,10 +3,12 @@
 namespace VoyagerDataTransport\Console\Commands\Config;
 
 use Illuminate\Console\Command;
+use VoyagerDataTransport\Contracts\ICommandStatus;
+use VoyagerDataTransport\Providers\VoyagerDataTransportProvider;
 
-class VoyagerDataTransportPublish extends Command
+class VoyagerDataTransportPublish extends Command implements ICommandStatus
 {
-        /**
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -28,6 +30,6 @@ class VoyagerDataTransportPublish extends Command
     public function handle()
     {
         $this->call('vendor:publish', ['--provider' => VoyagerDataTransportProvider::class]);
-        return 0;
+        return self::ALL_PROCESS_SUCCESS_CODE;
     }
 }
