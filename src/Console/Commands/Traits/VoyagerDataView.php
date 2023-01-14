@@ -45,9 +45,10 @@ trait VoyagerDataView
     /**
      * Rewrite getPath function.
      *
+     * @param  string  $name  data table name
      * @return string
      */
-    protected function getPath($name)
+    protected function getPath($name): string
     {
         $slug = strtolower($name);
 
