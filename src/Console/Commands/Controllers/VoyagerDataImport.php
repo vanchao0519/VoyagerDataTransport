@@ -5,8 +5,9 @@ namespace VoyagerDataTransport\Console\Commands\Controllers;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
 use Illuminate\Console\GeneratorCommand;
+use VoyagerDataTransport\Contracts\ICommandStatus;
 
-class VoyagerDataImport extends GeneratorCommand
+class VoyagerDataImport extends GeneratorCommand implements ICommandStatus
 {
 
     use VoyagerDataCommon;
@@ -19,10 +20,6 @@ class VoyagerDataImport extends GeneratorCommand
     const CONFIRM_REWRITE_EXIST_FILE_INFO = 'Do you want to rewrite an exist import controller file?';
 
     const DO_NOT_REWRITE_INFO = 'You select do not rewrite exist import controller file, current process quit! Go next process!';
-
-    const DO_NOT_REWRITE_CODE = -20;
-
-    const ALL_PROCESS_SUCCESS_CODE = 0;
 
     /**
      * The name and signature of the console command.
