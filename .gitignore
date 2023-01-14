@@ -20,6 +20,7 @@ app/Models/User.php
 routes/web.php
 config/voyager.php
 app/VoyagerDataTransport/
+resources/views
 
 storage/*.key
 .env
