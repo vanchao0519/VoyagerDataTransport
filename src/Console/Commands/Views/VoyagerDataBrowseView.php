@@ -26,23 +26,16 @@ class VoyagerDataBrowseView extends GeneratorCommand
      */
     protected $description = 'Generate voyager data transport browse blade file';
 
+    /**
+     * Generate file name.
+     *
+     * @var string
+     */
+    private $_fileName = 'browse.blade.php';
+
     protected function getStub()
     {
         return $this->resolveStubPath('/stubs/browse.blade.stub');
-    }
-
-    /**
-     * Rewrite getPath function.
-     *
-     * @return string
-     */
-    protected function getPath($name)
-    {
-        $slug = strtolower($name);
-
-        $path = "resources/views/vendor/voyager/{$slug}/browse.blade.php";
-
-        return $path;
     }
 
     /**

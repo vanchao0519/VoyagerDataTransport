@@ -26,23 +26,16 @@ class VoyagerDataImportView extends GeneratorCommand
      */
     protected $description = 'Generate voyager data transport import-data blade file';
 
+    /**
+     * Generate file name.
+     *
+     * @var string
+     */
+    private $_fileName = 'import-data.blade.php';
+
     protected function getStub()
     {
         return $this->resolveStubPath('/stubs/import-data.blade.stub');
-    }
-
-    /**
-     * Rewrite getPath function.
-     *
-     * @return string
-     */
-    protected function getPath($name)
-    {
-        $slug = strtolower($name);
-
-        $path = "resources/views/vendor/voyager/{$slug}/import-data.blade.php";
-
-        return $path;
     }
 
     /**

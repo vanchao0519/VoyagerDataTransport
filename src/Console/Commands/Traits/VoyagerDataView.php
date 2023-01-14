@@ -31,4 +31,30 @@ trait VoyagerDataView
         return $this->replaceView($stub);
     }
 
+    /**
+     * Get view path pre.
+     *
+     * @return string
+     */
+    protected function getPathPre(): string
+    {
+        $path = resource_path() . "/views/vendor/voyager";
+        return $path;
+    }
+
+    /**
+     * Rewrite getPath function.
+     *
+     * @return string
+     */
+    protected function getPath($name)
+    {
+        $slug = strtolower($name);
+
+        $path = "{$this->getPathPre()}/{$slug}/{$this->_fileName}";
+
+        return $path;
+    }
+
+
 }
