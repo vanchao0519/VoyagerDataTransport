@@ -10,7 +10,34 @@
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+<!--            <directory suffix="Test.php">./tests/Feature</directory>-->
+            <file>
+                tests/Feature/VoyagerDataTransportImportPermissionTest.php
+            </file>
+            <file>
+                tests/Feature/VoyagerDataTransportExportPermissionTest.php
+            </file>
+            <file>
+                tests/Feature/VoyagerDataTransportImportControllerTest.php
+            </file>
+            <file>
+                tests/Feature/VoyagerDataTransportExportControllerTest.php
+            </file>
+            <file>
+                tests/Feature/VoyagerDataBrowseViewTest.php
+            </file>
+            <file>
+                tests/Feature/VoyagerDataImportViewTest.php
+            </file>
+            <file>
+                tests/Feature/VoyagerDataTransportRouteTest.php
+            </file>
+            <file>
+                tests/Feature/VoyagerDataTransportPermissionsTest.php
+            </file>
+            <file>
+                tests/Feature/VoyagerDataTransportPublishTest.php
+            </file>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
