@@ -13,10 +13,6 @@ class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
     use VoyagerDataCommon;
     use VoyagerDataController;
 
-    const CREATING_PERMISSION_RECORD_INFO = 'Export permission data record create successful!';
-
-    const PERMISSION_RECORD_EXISTS_INFO = 'Export permission data record existed!';
-
     const CONFIRM_REWRITE_EXIST_FILE_INFO = 'Do you want to rewrite an exist export controller file?';
 
     const DO_NOT_REWRITE_INFO = 'You select do not rewrite exist export controller file, current process quit! Go next process!';
@@ -41,13 +37,6 @@ class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
      * @var string
      */
     protected $_controllerNamePre = 'Export';
-
-    /**
-     * Permission record key pre.
-     *
-     * @var string
-     */
-    protected $_keyPre = 'browse_export_';
 
     /**
      * Controller file path.
@@ -75,17 +64,7 @@ class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
      */
     public function handle()
     {
-        $tableName = strtolower($this->getNameInput());
-
-        $name = $this->qualifyClass($this->getNameInput());
-
-        if (false === $this->isExportPermissionExist($tableName) ) {
-            if (0 < $this->createPermission("{$this->_keyPre}{$tableName}", $tableName)) {
-                $this->info(self::CREATING_PERMISSION_RECORD_INFO);
-            }
-        } else {
-            $this->warn(self::PERMISSION_RECORD_EXISTS_INFO);
-        }
+        $name = $this->getNameInput();
 
         if ( $this->isFileExists() && !$this->confirm(self::CONFIRM_REWRITE_EXIST_FILE_INFO, false)) {
             $this->warn(self::DO_NOT_REWRITE_INFO);
@@ -98,7 +77,7 @@ class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
 
         $this->makeDirectory($path);
 
-        $this->files->put($path, $this->sortImports($this->buildClass($name)));
+        $this->files->put($path, $this->buildClass($name));
 
         return self::ALL_PROCESS_SUCCESS_CODE;
     }

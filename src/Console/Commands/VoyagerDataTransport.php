@@ -28,6 +28,8 @@ class VoyagerDataTransport extends Command
     public function handle()
     {
         $tableName = $this->argument('tableName');
+        $this->call("voyager:data:transport:import:permission", ['tableName' => $tableName]);
+        $this->call("voyager:data:transport:export:permission", ['tableName' => $tableName]);
         $this->call("voyager:data:import:controller", ['tableName' => $tableName]);
         $this->call("voyager:data:export:controller", ['tableName' => $tableName]);
         $this->call("voyager:data:transport:browse:view", ['tableName' => $tableName]);

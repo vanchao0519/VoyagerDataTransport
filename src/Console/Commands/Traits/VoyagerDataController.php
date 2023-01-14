@@ -8,52 +8,6 @@ trait VoyagerDataController
 {
 
     /**
-     * Check permission record is exists.
-     *
-     * @param  string  $keyPre
-     * @param  string  $tableName
-     * @return boolean
-     */    
-    protected function isPermissionExist($keyPre, $tableName)
-    {
-        $key = "{$keyPre}{$tableName}";
-
-        $record = Permission::query()->where([
-            'table_name' => $tableName,
-            'key' => $key
-        ])->first();
-
-        return $record !== null;
-    }
-
-    /**
-     * Create permission record.
-     *
-     * @param  string  $key
-     * @param  string  $tableName
-     * @return int
-     */
-    protected function createPermission($key, $tableName)
-    {
-        $model = new Permission();
-        $model->key = $key;
-        $model->table_name = $tableName;
-        $model->save();
-        return $model->id;
-    }
-
-    /**
-     * Check export permission record is exist.
-     *
-     * @param  string  $tableName
-     * @return boolean
-     */
-    protected function isExportPermissionExist($tableName)
-    {
-        return $this->isPermissionExist($this->_keyPre, $tableName);
-    }
-
-    /**
      * Replace the class name for the given stub.
      *
      * @param  string  $stub
@@ -64,7 +18,7 @@ trait VoyagerDataController
     {
         $tableName = strtolower($this->getNameInput());
 
-        $class = str_replace($this->getNamespace($name).'\\', '', $name);
+        $class = $this->getControllerName($tableName);
 
         return str_replace(['{{ class }}', '{{ tableName }}'], [$class, $tableName], $stub);
     }
@@ -118,27 +72,16 @@ trait VoyagerDataController
     }
 
     /**
-     * Parse the class name and format according to the root namespace.
+     * Rewrite getPath function.
      *
-     * @param  string  $name
+     * @param  string  $name  data table name
      * @return string
      */
-    protected function qualifyClass($name)
+    protected function getPath($name): string
     {
+        $path = "{$this->_filePath}{$this->getControllerName($name)}{$this->_fileExt}";
 
-        $name = 'VoyagerDataTransport/Http/Controllers/' . $this->getControllerName($name);
-
-        $name = ltrim($name, '\\/');
-
-        $name = str_replace('/', '\\', $name);
-
-        $rootNamespace = $this->rootNamespace();
-
-        if (Str::startsWith($name, $rootNamespace)) {
-            return $name;
-        }
-
-        return $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name;
+        return $path;
     }
 
 }

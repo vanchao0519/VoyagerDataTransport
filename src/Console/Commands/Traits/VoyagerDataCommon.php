@@ -25,7 +25,7 @@ trait VoyagerDataCommon
      */
     protected function getNameInput()
     {
-        return trim($this->argument('tableName'));
+        return strtolower($this->argument('tableName'));
     }
 
 }
