@@ -17,6 +17,15 @@ The fastest way:
 php artisan voyager:data:transport <data-tabel-name>
 ```
 You can also used the single command which you want:
+- Create import permission record to database
+```php
+php artisan voyager:data:transport:import:permission <data-tabel-name>
+```
+- Create export permission record to database
+```php
+php artisan voyager:data:transport:export:permission <data-tabel-name>
+```
+You can also used the single command which you want:
 - Create import controller file
 ```php
 php artisan voyager:data:import:controller <data-tabel-name>
