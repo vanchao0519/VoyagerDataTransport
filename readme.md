@@ -25,7 +25,6 @@ php artisan voyager:data:transport:import:permission <data-tabel-name>
 ```php
 php artisan voyager:data:transport:export:permission <data-tabel-name>
 ```
-You can also used the single command which you want:
 - Create import controller file
 ```php
 php artisan voyager:data:import:controller <data-tabel-name>
