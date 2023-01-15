@@ -50,6 +50,7 @@
     },
     "scripts": {
         "test" : "php artisan test",
+        "test_filter" : "php artisan test --filter",
         "clear_test_data" : "rm -rf resources/views/vendor/ && rm -rf app/VoyagerDataTransport/",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
