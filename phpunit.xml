@@ -38,6 +38,9 @@
             <file>
                 tests/Feature/VoyagerDataTransportPublishTest.php
             </file>
+            <file>
+                tests/Feature/SetUserPermissionRoleTest.php
+            </file>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
