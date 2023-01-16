@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Tests\Feature\Traits\ParameterTrait;
@@ -18,7 +16,7 @@ class SetUserPermissionRoleTest extends TestCase
     use UserTrait;
 
     /**
-     * A basic feature test example.
+     * Set user permission role for next test.
      *
      * @return void
      */

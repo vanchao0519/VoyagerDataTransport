@@ -14,7 +14,7 @@ class AccessDataTransportPagesTest extends TestCase
     use UserTrait;
 
     /**
-     * A basic feature test example.
+     * Access import page and export page.
      *
      * @return void
      */
