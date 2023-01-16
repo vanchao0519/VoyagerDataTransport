@@ -7,6 +7,10 @@ Notice that the package is based on <a href="https://voyager.devdojo.com/">Voyag
 ## Before install
 You must confirm that laravel project created and the voyager package installed before.
 <br>
+Run the command below to install basic test data
+```php
+php artisan voyager:install --with-dummy
+```
 ## How to install the VoyagerDataTransport
 ```php
 composer require vanchao0519/voyager-data-transport
