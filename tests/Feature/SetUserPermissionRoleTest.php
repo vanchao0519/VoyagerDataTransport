@@ -23,11 +23,13 @@ class SetUserPermissionRoleTest extends TestCase
     public function test_set_permission_role()
     {
         $role_id = $this->_getRoleId();
+        $this->assertIsInt($role_id);
         $permission_ids = $this->_getPermissionIds();
+        $this->assertIsArray($permission_ids);
         $this->assertTrue($this->_setPermissionRole($role_id, $permission_ids));
     }
 
-    private function _getPermissionIds()
+    private function _getPermissionIds(): array
     {
         $permissionPres = [
             'browse_import_',
@@ -50,7 +52,7 @@ class SetUserPermissionRoleTest extends TestCase
         return $result;
     }
 
-    private function _getRoleId()
+    private function _getRoleId(): int
     {
         $user = User::query()->where([
             'email' => $this->_email,
