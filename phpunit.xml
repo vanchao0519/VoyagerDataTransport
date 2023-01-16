@@ -41,6 +41,9 @@
             <file>
                 tests/Feature/SetUserPermissionRoleTest.php
             </file>
+            <file>
+                tests/Feature/AccessDataTransportPagesTest.php
+            </file>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
