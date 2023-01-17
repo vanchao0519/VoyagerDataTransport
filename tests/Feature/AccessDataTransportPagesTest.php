@@ -8,6 +8,10 @@ use Tests\Feature\Traits\ParameterTrait;
 use Tests\Feature\Traits\UserTrait;
 use Tests\TestCase;
 
+/**
+ * Class AccessDataTransportPagesTest
+ * @package Tests\Feature
+ */
 class AccessDataTransportPagesTest extends TestCase
 {
     use ParameterTrait;
@@ -18,7 +22,7 @@ class AccessDataTransportPagesTest extends TestCase
      *
      * @return void
      */
-    public function test_access_page()
+    public function test_access_page (): void
     {
         $response = $this->post('/admin/login', [
             'email' => $this->_email,

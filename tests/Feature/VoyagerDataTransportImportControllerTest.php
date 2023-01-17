@@ -9,6 +9,10 @@ use Tests\TestCase;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 
+/**
+ * Class VoyagerDataTransportImportControllerTest
+ * @package Tests\Feature
+ */
 class VoyagerDataTransportImportControllerTest extends TestCase implements ICommandStatus
 {
     use ParameterTrait;
@@ -26,13 +30,18 @@ class VoyagerDataTransportImportControllerTest extends TestCase implements IComm
      *
      * @return void
      */
-    public function test_command()
+    public function test_command (): void
     {
         $this->artisan("voyager:data:import:controller {$this->_getTableName()}")
             ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
     }
 
-    public function test_is_file_exist ()
+    /**
+     * Test that the Import Controller file is created.
+     *
+     * @return void
+     */
+    public function test_is_file_exist (): void
     {
         $fileName = $this->getControllerName($this->_getTableName());
         $ext = ".php";

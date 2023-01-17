@@ -9,6 +9,10 @@ use Tests\Feature\Traits\ParameterTrait;
 use Tests\Feature\Traits\UserTrait;
 use Tests\TestCase;
 
+/**
+ * Class SetUserPermissionRoleTest
+ * @package Tests\Feature
+ */
 class SetUserPermissionRoleTest extends TestCase
 {
 
@@ -20,7 +24,7 @@ class SetUserPermissionRoleTest extends TestCase
      *
      * @return void
      */
-    public function test_set_permission_role()
+    public function test_set_permission_role(): void
     {
         $role_id = $this->_getRoleId();
         $this->assertIsInt($role_id);
@@ -29,6 +33,12 @@ class SetUserPermissionRoleTest extends TestCase
         $this->assertTrue($this->_setPermissionRole($role_id, $permission_ids));
     }
 
+
+    /**
+     * Get permission id from data table permission
+     *
+     * @return array
+     */
     private function _getPermissionIds(): array
     {
         $permissionPres = [
@@ -52,6 +62,12 @@ class SetUserPermissionRoleTest extends TestCase
         return $result;
     }
 
+
+    /**
+     * Get role id from data table user
+     *
+     * @return int
+     */
     private function _getRoleId(): int
     {
         $user = User::query()->where([
@@ -64,7 +80,15 @@ class SetUserPermissionRoleTest extends TestCase
         return false;
     }
 
-    private function _setPermissionRole ( int $role_id, array $permission_ids )
+
+    /**
+     * Insert record to data table permission_role
+     *
+     * @param int $role_id
+     * @param array $permission_ids
+     * @return bool
+     */
+    private function _setPermissionRole ( int $role_id, array $permission_ids ): bool
     {
         $data = [];
         foreach ($permission_ids as $pId) {

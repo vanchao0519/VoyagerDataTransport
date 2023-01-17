@@ -8,6 +8,10 @@ use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 
+/**
+ * Class VoyagerDataImportViewTest
+ * @package Tests\Feature
+ */
 class VoyagerDataImportViewTest extends TestCase implements ICommandStatus
 {
     use ParameterTrait;
@@ -24,11 +28,22 @@ class VoyagerDataImportViewTest extends TestCase implements ICommandStatus
             ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
     }
 
-    public function test_is_file_created ()
+    /**
+     * Confirm that import-data view file is created.
+     *
+     * @return void
+     */
+    public function test_is_file_created (): void
     {
         $this->assertFileExists($this->_getFile());
     }
 
+
+    /**
+     * Get the import-data view file path
+     *
+     * @return string
+     */
     private function _getFile (): string
     {
         $file = "resources/views/vendor/voyager/{$this->_getTableName()}/import-data.blade.php";

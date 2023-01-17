@@ -7,6 +7,10 @@ use Tests\TestCase;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 use VoyagerDataTransport\Contracts\IRouteParameters;
 
+/**
+ * Class VoyagerDataTransportRouteTest
+ * @package Tests\Feature
+ */
 class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters, ICommandStatus
 {
 
@@ -17,23 +21,29 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
      *
      * @return void
      */
-    public function test_command()
+    public function test_command(): void
     {
         $this->artisan("voyager:data:transport:route:detail:config {$this->_getTableName()}")
             ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
     }
 
     /**
-     * After command execute then confirm config file exist.
+     * Confirm config file existed.
      *
      * @return void
      */
-    public function test_is_file_created ()
+    public function test_is_file_created (): void
     {
         $this->assertFileExists($this->_getFile());
     }
 
-    public function test_check_verb_key_exists ()
+
+    /**
+     * Check [get] [post] key existed.
+     *
+     * @return void
+     */
+    public function test_check_verb_key_exists (): void
     {
         $config = $this->_getConfig();
 
@@ -42,13 +52,19 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
         $this->assertArrayHasKey(self::POST, $config);
     }
 
-    public function test_check_parameters_exists ()
+
+    /**
+     * Check the config data existed.
+     *
+     * @return void
+     */
+    public function test_check_parameters_exists (): void
     {
         $config = $this->_getConfig();
         $this->assertIsArray($config);
 
 
-        $checkArrayValidate = function ($configs) {
+        $checkArrayValidate = function (array $configs): void {
             foreach ($configs as $_config) {
                 $this->assertArrayHasKey(self::URL, $_config);
                 $this->assertArrayHasKey(self::CONTROLLER, $_config);
@@ -70,12 +86,23 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
         $checkArrayValidate($config[self::POST]);
     }
 
+
+    /**
+     * Get the route detail config file path
+     *
+     * @return string
+     */
     private function _getFile (): string
     {
         $file = "app/VoyagerDataTransport/config/route/tables/{$this->_getTableName()}.php";
         return $file;
     }
 
+    /**
+     * Get the config data from the route detail config
+     *
+     * @return array
+     */
     private function _getConfig (): array
     {
         $data = require $this->_getFile();

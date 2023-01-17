@@ -9,6 +9,10 @@ use Tests\TestCase;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 use VoyagerDataTransport\Contracts\IPermissionParameters;
 
+/**
+ * Class VoyagerDataTransportPermissionsTest
+ * @package Tests\Feature
+ */
 class VoyagerDataTransportPermissionsTest extends TestCase implements IPermissionParameters, ICommandStatus
 {
 
@@ -19,7 +23,7 @@ class VoyagerDataTransportPermissionsTest extends TestCase implements IPermissio
      *
      * @return void
      */
-    public function test_command()
+    public function test_command(): void
     {
         $this->artisan("voyager:data:transport:permission:detail:config {$this->_getTableName()}")
             ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
@@ -30,12 +34,18 @@ class VoyagerDataTransportPermissionsTest extends TestCase implements IPermissio
      *
      * @return void
      */
-    public function test_is_file_created ()
+    public function test_is_file_created (): void
     {
         $this->assertFileExists($this->_getFile());
     }
 
-    public function test_check_permission_is_valid ()
+
+    /**
+     * Validate permission
+     *
+     * @return void
+     */
+    public function test_check_permission_is_valid (): void
     {
         $config = $this->_getConfig();
         $this->assertIsArray($config);
@@ -51,12 +61,23 @@ class VoyagerDataTransportPermissionsTest extends TestCase implements IPermissio
         $this->assertTrue($isExportPermission);
     }
 
+
+    /**
+     * Get the detail config file path
+     *
+     * @return string
+     */
     private function _getFile (): string
     {
         $file = "app/VoyagerDataTransport/config/permissions/tables/{$this->_getTableName()}.php";
         return $file;
     }
 
+    /**
+     * Get the data from config file
+     *
+     * @return array
+     */
     private function _getConfig (): array
     {
         $data = require $this->_getFile();

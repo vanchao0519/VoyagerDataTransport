@@ -8,6 +8,10 @@ use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 
+/**
+ * Class VoyagerDataTransportExportPermissionTest
+ * @package Tests\Feature
+ */
 class VoyagerDataTransportExportPermissionTest extends TestCase implements ICommandStatus
 {
     use ParameterTrait;
@@ -17,7 +21,7 @@ class VoyagerDataTransportExportPermissionTest extends TestCase implements IComm
      *
      * @return void
      */
-    public function test_command()
+    public function test_command (): void
     {
         $this->artisan("voyager:data:transport:export:permission {$this->_getTableName()}")
             ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);

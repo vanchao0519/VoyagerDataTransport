@@ -8,6 +8,10 @@ use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 
+/**
+ * Class VoyagerDataBrowseViewTest
+ * @package Tests\Feature
+ */
 class VoyagerDataBrowseViewTest extends TestCase implements ICommandStatus
 {
 
@@ -25,11 +29,22 @@ class VoyagerDataBrowseViewTest extends TestCase implements ICommandStatus
             ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
     }
 
-    public function test_is_file_created ()
+    /**
+     * Confirm that browse view file is created.
+     *
+     * @return void
+     */
+    public function test_is_file_created (): void
     {
         $this->assertFileExists($this->_getFile());
     }
 
+
+    /**
+     * Get the browse file path
+     *
+     * @return string
+     */
     private function _getFile (): string
     {
         $file = "resources/views/vendor/voyager/{$this->_getTableName()}/browse.blade.php";
