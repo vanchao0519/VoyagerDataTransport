@@ -48,19 +48,17 @@ class ClearMockDataTest extends TestCase
             $permissions[] = "{$permissionPre}{$tableName}";
         }
 
-        $id = DB::table('permissions')
-                ->orderBy('id', 'desc')
-                ->limit(1)
-                ->value('id');
+        $count = DB::table('permissions')->count();
 
-        $this->assertIsInt($id);
+        $this->assertIsInt($count);
+        $this->assertGreaterThan(0, $count);
 
         $result = DB::table('permissions')
             ->whereIn('key', $permissions)
             ->where('table_name', '=', $tableName)
             ->delete();
 
-        $resetNum = $id - ($result - 1);
+        $resetNum = $count - ($result - 1);
 
         $this->assertEquals(count($permissions), $result);
         $this->assertTrue(DB::statement('ALTER TABLE `permissions` AUTO_INCREMENT='. $resetNum));
