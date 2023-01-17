@@ -44,6 +44,9 @@
             <file>
                 tests/Feature/AccessDataTransportPagesTest.php
             </file>
+            <file>
+                tests/Feature/ClearMockDataTest.php
+            </file>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">

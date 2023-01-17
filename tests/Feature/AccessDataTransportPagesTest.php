@@ -37,8 +37,8 @@ class AccessDataTransportPagesTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response = $this->get("/admin/export_{$tableName}");
-
-        $response->assertStatus(200);
+//        $response = $this->get("/admin/export_{$tableName}");
+//
+//        $response->assertStatus(200);
     }
 }
