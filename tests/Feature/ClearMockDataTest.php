@@ -6,9 +6,15 @@ use Illuminate\Support\Facades\DB;
 use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
 
+/**
+ * Class ClearMockDataTest
+ * @package Tests\Feature
+ */
 class ClearMockDataTest extends TestCase
 {
+
     use ParameterTrait;
+
     /**
      * A basic feature test example.
      *
@@ -20,6 +26,12 @@ class ClearMockDataTest extends TestCase
         $this->assertTrue(self::delTree(app_path() . '/VoyagerDataTransport'));
     }
 
+
+    /**
+     * Remove specific data records.
+     *
+     * @return void
+     */
     public function test_remove_data_records(): void
     {
         $permissionPres = [
@@ -51,7 +63,16 @@ class ClearMockDataTest extends TestCase
         $this->assertTrue(DB::statement('ALTER TABLE `permissions` AUTO_INCREMENT='. $resetNum));
     }
 
-    protected static function delTree($dir): bool {
+    /**
+     * Recursively delete folder and files in folder
+     *
+     * Reference from the link below:
+     * https://www.php.net/manual/zh/function.rmdir.php
+     *
+     * @param string $dir
+     * @return bool
+     */
+    protected static function delTree(string $dir): bool {
         $files = array_diff(scandir($dir), array('.','..'));
         foreach ($files as $file) {
             (is_dir("$dir/$file")) ? self::delTree("$dir/$file") : unlink("$dir/$file");
