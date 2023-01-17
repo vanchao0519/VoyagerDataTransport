@@ -16,7 +16,10 @@ class ClearMockDataTest extends TestCase
     use ParameterTrait;
 
     /**
-     * A basic feature test example.
+     * Remove specific package test folder and file.
+     * Removed folder list:
+     * app/VoyagerDataTransport
+     * resources/vendor
      *
      * @return void
      */
