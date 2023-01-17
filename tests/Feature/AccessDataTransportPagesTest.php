@@ -34,8 +34,11 @@ class AccessDataTransportPagesTest extends TestCase
         $response->assertRedirect('/admin');
 
         $response = $this->get("/admin/import_{$tableName}");
-
         $response->assertStatus(200);
+
+        $view = $this->view("vendor.voyager.{$tableName}.import-data");
+        $view->assertSee("import_{$tableName}");
+        $view->assertSee("userfile");
 
 //        $response = $this->get("/admin/export_{$tableName}");
 //
