@@ -45,6 +45,10 @@ php artisan voyager:data:transport:browse:view <data-tabel-name>
 ```php
 php artisan voyager:data:transport:import-data:view <data-tabel-name>
 ```
+- Create export data view file
+```php
+php artisan voyager:data:transport:export-data:view <data-tabel-name>
+```
 - Create voyager data transport permission detail config file
 ```php
 php artisan voyager:data:transport:permission:detail:config <data-tabel-name>
