@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\IReadFilter;
 
+/**
+ * Trait VoyagerImportData
+ * @package VoyagerDataTransport\Traits
+ */
 trait VoyagerImportData {
 
     private $_redirectUrl = '/admin';
@@ -16,9 +20,11 @@ trait VoyagerImportData {
 
     private $inputFileName = 'userfile';
 
-    /*
-     * param $fileName string,
-     * param $chunkSize int, This number is bigger, more memory used
+    /**
+     * @param string $fileName
+     * @param int $chunkSize This number is bigger, more memory used
+     * @return array
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
      */
     public function processExcel (string $fileName, int $chunkSize = 5000)
     {
@@ -54,6 +60,12 @@ trait VoyagerImportData {
 
     }
 
+
+    /**
+     * @param Request $req
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     */
     public function upload(Request $req)
     {
         $inputFileName = $this->inputFileName;
@@ -104,18 +116,37 @@ trait VoyagerImportData {
         return redirect()->back()->with(['message' => 'Redirect message 401']);
     }
 
-    protected function setRedirectUrl()
+
+    /**
+     * Set redirect url
+     *
+     * @return void
+     */
+    protected function setRedirectUrl(): void
     {
         // reset $_redirectUrl
     }
 
-    // return array('status' => true, 'message' => 'current data import successful')
-    // return array('status' => false, 'message' => 'something wrong message')
+    /**
+     * Import data to database from csv or xlsx file
+     *
+     * Check demo for more details:
+     * https://github.com/vanchao0519/VoyagerDataTransportDemo/blob/main/app/VoyagerDataTransport/Http/Controllers/ImportPosts.php
+     *
+     * @param array $data
+     * @return array
+     */
     protected function importData (array $data): array
     {
         //TODO: Add your logic to import data to database with DB or Eloquent
     }
 
+
+    /**
+     * Set and return IReadFilter
+     *
+     * @return IReadFilter
+     */
     protected function chunkReadFilter (): IReadFilter {
         return new class implements IReadFilter {
             private $startRow = 0;

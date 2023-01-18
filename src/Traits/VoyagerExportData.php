@@ -8,6 +8,10 @@ use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Pdf\Mpdf;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
+/**
+ * Trait VoyagerExportData
+ * @package VoyagerDataTransport\Traits
+ */
 trait VoyagerExportData {
 
     private $spreadSheet;
@@ -15,6 +19,13 @@ trait VoyagerExportData {
     private $writer;
     private $writerType;
 
+
+    /**
+     * Download action
+     *
+     * @param Request $req
+     * @return void
+     */
     public function download (Request $req): void
     {
         $_exportType = (int) $req->get('export_type');
@@ -41,29 +52,57 @@ trait VoyagerExportData {
         exit($content);
     }
 
-    protected function exportSet()
+
+    /**
+     * Pre-set the export config
+     *
+     * @return void
+     */
+    protected function exportSet(): void
     {
         ini_set('memory_limit', '1024M');
         set_time_limit(180);
     }
 
-    protected function csvWriterConfig ()
+    /**
+     * Pre-set the csv writer config
+     *
+     * @return void
+     */
+    protected function csvWriterConfig (): void
     {
         $this->writer->setDelimiter(',');
         $this->writer->setEnclosure('"');
         $this->writer->setSheetIndex(0);
     }
 
-    protected function xlsxWriterConfig ()
+    /**
+     * Pre-set the xlsx writer config
+     *
+     * @return void
+     */
+    protected function xlsxWriterConfig (): void
     {
     }
 
-    protected function pdfWriterConfig ()
+    /**
+     * Pre-set the pdf writer config
+     *
+     * @return void
+     */
+    protected function pdfWriterConfig (): void
     {
         $this->writer->setPreCalculateFormulas(false);
     }
 
-    protected function setWriter (string $type)
+    /**
+     * Set the type of writer which you want
+     *
+     * The boolean return just to stop next code snippet execute.
+     *
+     * @return bool
+     */
+    protected function setWriter (string $type): bool
     {
         $type = strtolower($type);
         if ( 'csv' === $type ) {
@@ -84,7 +123,17 @@ trait VoyagerExportData {
         return false;
     }
 
-    protected function setSpreadSheet ()
+    /**
+     * Set spread sheet
+     *
+     * Here is just a sample. You should concrete your own logic code in the export controller
+     * Check demo for more details:
+     * https://github.com/vanchao0519/VoyagerDataTransportDemo/blob/main/app/VoyagerDataTransport/Http/Controllers/ExportPosts.php
+     *
+     * @param int $type
+     * @return void
+     */
+    protected function setSpreadSheet (): void
     {
         // Set Header
         $this->sheet->setCellValueByColumnAndRow(1, 1, 'title 01 here');
@@ -95,10 +144,14 @@ trait VoyagerExportData {
         $this->sheet->setCellValueByColumnAndRow(2, 2, 'content 02 here');
     }
 
-    /*
-     * allowed type: xlsx, csv, pdf
+
+    /**
+     * Set writer type
+     *
+     * @param int $type
+     * @return void
      */
-    protected function setWriterType(int $type = -1)
+    protected function setWriterType(int $type = -1): void
     {
         switch ($type) {
             case self::XLSX_TYPE:
