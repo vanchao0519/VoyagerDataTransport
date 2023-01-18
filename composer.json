@@ -19,7 +19,8 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "phpoffice/phpspreadsheet": "^1.18"
+        "phpoffice/phpspreadsheet": "^1.18",
+        "mpdf/mpdf": "^8.1"
     },
     "require-dev": {
         "fruitcake/laravel-cors": "^2.0",
