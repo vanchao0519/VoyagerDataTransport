@@ -10,6 +10,8 @@ class {{ class }} extends Controller
 {
     use VoyagerImportData;
 
+    const SKIP_HEADER = 10;
+
     const COL_NAME_01 = 0;
 
     public function index()

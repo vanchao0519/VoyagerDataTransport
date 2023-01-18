@@ -74,7 +74,7 @@ trait VoyagerImportData {
 
         $_shouldSkipHeader = (int) $req->get('shouldSkipHeader');
 
-        if (10 !== $_shouldSkipHeader) $this->_shouldSkipHeader = false;
+        if (self::SKIP_HEADER !== $_shouldSkipHeader) $this->_shouldSkipHeader = false;
 
         if ($req->hasFile($inputFileName)) {
 
