@@ -20,11 +20,6 @@ class {{ class }} extends Controller
         return view('vendor.voyager.{{ tableName }}.export-data', []);
     }
 
-    protected function setWriterType()
-    {
-        $this->writerType = 'xlsx';
-    }
-
     protected function setSpreadSheet()
     {
 
