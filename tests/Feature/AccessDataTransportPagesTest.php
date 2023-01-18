@@ -18,7 +18,7 @@ class AccessDataTransportPagesTest extends TestCase
     use UserTrait;
 
     /**
-     * Access import page.
+     * Access import page and export page.
      *
      * @return void
      */
@@ -40,23 +40,6 @@ class AccessDataTransportPagesTest extends TestCase
         $view->assertSee("import_{$tableName}");
         $view->assertSee("userfile");
         $view->assertSee("shouldSkipHeader");
-    }
-
-    /**
-     * Access export page.
-     *
-     * @return void
-     */
-    public function test_access_export_page (): void
-    {
-        $response = $this->post('/admin/login', [
-            'email' => $this->_email,
-            'password' => $this->_password,
-        ]);
-
-        $tableName = $this->_getTableName();
-
-        $response->assertRedirect('/admin');
 
         $response = $this->get("/admin/export_{$tableName}");
         $response->assertStatus(200);
@@ -65,5 +48,6 @@ class AccessDataTransportPagesTest extends TestCase
         $view->assertSee("export_{$tableName}");
         $view->assertSee("export_type");
     }
+
 
 }
