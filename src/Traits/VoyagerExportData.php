@@ -3,6 +3,7 @@
 namespace VoyagerDataTransport\Traits;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Pdf\Mpdf;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -14,14 +15,16 @@ trait VoyagerExportData {
     private $writer;
     private $writerType;
 
-    public function export ()
+    public function download (Request $req): void
     {
+        $_exportType = (int) $req->get('export_type');
+
         $this->exportSet();
 
         $this->spreadSheet = new Spreadsheet();
         $this->sheet = $this->spreadSheet->getActiveSheet();
         $this->setSpreadSheet();
-        $this->setWriterType();
+        $this->setWriterType($_exportType);
 
         $hashName = hash('crc32', time());
         $fileName = "{$hashName}.{$this->writerType}";
@@ -95,8 +98,21 @@ trait VoyagerExportData {
     /*
      * allowed type: xlsx, csv, pdf
      */
-    protected function setWriterType ()
+    protected function setWriterType(int $type = -1)
     {
-        $this->writerType = 'xlsx';
+        switch ($type) {
+            case self::XLSX_TYPE:
+                $this->writerType = 'xlsx';
+                break;
+            case self::CSV_TYPE:
+                $this->writerType = 'csv';
+                break;
+            case self::PDF_TYPE:
+                $this->writerType = 'pdf';
+                break;
+            default:
+                $this->writerType = 'xlsx';
+                break;
+        }
     }
 }

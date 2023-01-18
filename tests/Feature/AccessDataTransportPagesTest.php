@@ -18,11 +18,11 @@ class AccessDataTransportPagesTest extends TestCase
     use UserTrait;
 
     /**
-     * Access import page and export page.
+     * Access import page.
      *
      * @return void
      */
-    public function test_access_page (): void
+    public function test_access_import_page (): void
     {
         $response = $this->post('/admin/login', [
             'email' => $this->_email,
@@ -39,9 +39,31 @@ class AccessDataTransportPagesTest extends TestCase
         $view = $this->view("vendor.voyager.{$tableName}.import-data");
         $view->assertSee("import_{$tableName}");
         $view->assertSee("userfile");
-
-//        $response = $this->get("/admin/export_{$tableName}");
-//
-//        $response->assertStatus(200);
+        $view->assertSee("shouldSkipHeader");
     }
+
+    /**
+     * Access export page.
+     *
+     * @return void
+     */
+    public function test_access_export_page (): void
+    {
+        $response = $this->post('/admin/login', [
+            'email' => $this->_email,
+            'password' => $this->_password,
+        ]);
+
+        $tableName = $this->_getTableName();
+
+        $response->assertRedirect('/admin');
+
+        $response = $this->get("/admin/export_{$tableName}");
+        $response->assertStatus(200);
+
+        $view = $this->view("vendor.voyager.{$tableName}.export-data");
+        $view->assertSee("export_{$tableName}");
+        $view->assertSee("export_type");
+    }
+
 }

@@ -30,6 +30,9 @@
                 tests/Feature/VoyagerDataImportViewTest.php
             </file>
             <file>
+                tests/Feature/VoyagerDataExportViewTest.php
+            </file>
+            <file>
                 tests/Feature/VoyagerDataTransportRouteTest.php
             </file>
             <file>

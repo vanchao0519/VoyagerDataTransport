@@ -22,6 +22,7 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
     private $_aliasExportPre = 'voyager.browse_export_';
 
     private $_uploadPre = 'voyager.import_';
+    private $_downloadPre = 'voyager.export_';
 
     /**
      * The name and signature of the console command.
@@ -149,6 +150,20 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
                 },
                 self::ALIAS => function () use ($tableName) {
                     return "{$this->_uploadPre}{$tableName}.upload";
+                },
+            ],
+            [
+                self::URL => function () use ($tableName) {
+                    return "{$this->_urlExportPre}{$tableName}/download";
+                },
+                self::CONTROLLER => function () use ($tableName) {
+                    return $this->_controllerNameGenerate($this->_exportPre, $tableName);
+                },
+                self::ACTION => function () {
+                    return 'download';
+                },
+                self::ALIAS => function () use ($tableName) {
+                    return "{$this->_downloadPre}{$tableName}.download";
                 },
             ],
         ];

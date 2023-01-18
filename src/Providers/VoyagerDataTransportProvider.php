@@ -5,6 +5,7 @@ namespace VoyagerDataTransport\Providers;
 use Illuminate\Support\ServiceProvider;
 use VoyagerDataTransport\Console\Commands\Permission\VoyagerDataExportPermission;
 use VoyagerDataTransport\Console\Commands\Permission\VoyagerDataImportPermission;
+use VoyagerDataTransport\Console\Commands\Views\VoyagerDataExportView;
 use VoyagerDataTransport\Console\Commands\VoyagerDataTransport;
 use VoyagerDataTransport\Console\Commands\Controllers\VoyagerDataExport;
 use VoyagerDataTransport\Console\Commands\Controllers\VoyagerDataImport;
@@ -51,6 +52,7 @@ class VoyagerDataTransportProvider extends ServiceProvider
             VoyagerDataExport::class,
             VoyagerDataBrowseView::class,
             VoyagerDataImportView::class,
+            VoyagerDataExportView::class,
             VoyagerDataTransportPermissions::class,
             VoyagerDataTransportRoute::class,
             VoyagerDataTransportPublish::class,

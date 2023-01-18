@@ -22,5 +22,11 @@ return [
             'actionName' => "{{ actionName_3 }}",
             'alias' => "{{ alias_3 }}",
         ],
+        [
+            'url' => "{{ url_4 }}",
+            'controllerName' => "{{ controllerName_4 }}",
+            'actionName' => "{{ actionName_4 }}",
+            'alias' => "{{ alias_4 }}",
+        ],
     ],
 ];
