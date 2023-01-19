@@ -25,7 +25,7 @@ class VoyagerDataImportViewTest extends TestCase implements ICommandStatus
     {
 
         $this->artisan("voyager:data:transport:import-data:view {$this->_getTableName()}")
-            ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
+            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
     }
 
     /**

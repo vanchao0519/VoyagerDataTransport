@@ -40,9 +40,9 @@ class VoyagerDataImportPermission extends Command implements ICommandStatus
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return bool
      */
-    public function handle()
+    public function handle(): bool
     {
         $tableName = strtolower($this->argument('tableName'));
         if (false === $this->isExportPermissionExist($tableName) ) {

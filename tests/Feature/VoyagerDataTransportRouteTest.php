@@ -24,7 +24,7 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
     public function test_command(): void
     {
         $this->artisan("voyager:data:transport:route:detail:config {$this->_getTableName()}")
-            ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
+            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
     }
 
     /**

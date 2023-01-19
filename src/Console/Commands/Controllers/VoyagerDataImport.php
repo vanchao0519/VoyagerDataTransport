@@ -60,9 +60,9 @@ class VoyagerDataImport extends GeneratorCommand implements ICommandStatus
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return bool
      */
-    public function handle()
+    public function handle(): bool
     {
         $name = $this->getNameInput();
 

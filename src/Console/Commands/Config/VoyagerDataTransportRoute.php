@@ -72,9 +72,9 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return bool
      */
-    public function handle(): int
+    public function handle(): bool
     {
         $tableName = strtolower($this->getNameInput());
 

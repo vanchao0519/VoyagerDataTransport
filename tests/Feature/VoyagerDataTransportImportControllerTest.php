@@ -33,7 +33,7 @@ class VoyagerDataTransportImportControllerTest extends TestCase implements IComm
     public function test_command (): void
     {
         $this->artisan("voyager:data:import:controller {$this->_getTableName()}")
-            ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
+            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
     }
 
     /**

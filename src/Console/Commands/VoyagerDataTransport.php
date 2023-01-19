@@ -3,8 +3,9 @@
 namespace VoyagerDataTransport\Console\Commands;
 
 use Illuminate\Console\Command;
+use VoyagerDataTransport\Contracts\ICommandStatus;
 
-class VoyagerDataTransport extends Command
+class VoyagerDataTransport extends Command implements ICommandStatus
 {
     /**
      * The name and signature of the console command.
@@ -23,9 +24,9 @@ class VoyagerDataTransport extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return bool
      */
-    public function handle()
+    public function handle(): bool
     {
         $tableName = $this->argument('tableName');
         $this->call("voyager:data:transport:import:permission", ['tableName' => $tableName]);
@@ -37,7 +38,7 @@ class VoyagerDataTransport extends Command
         $this->call("voyager:data:transport:permission:detail:config", ['tableName' => $tableName]);
         $this->call("voyager:data:transport:route:detail:config", ['tableName' => $tableName]);
         $this->call("voyager:data:transport:publish:config");
-        return 0;
+        return self::ALL_PROCESS_SUCCESS_CODE;
     }
 
 }

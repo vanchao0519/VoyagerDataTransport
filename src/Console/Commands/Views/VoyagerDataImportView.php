@@ -5,8 +5,9 @@ namespace VoyagerDataTransport\Console\Commands\Views;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataView;
 use Illuminate\Console\GeneratorCommand;
+use VoyagerDataTransport\Contracts\ICommandStatus;
 
-class VoyagerDataImportView extends GeneratorCommand
+class VoyagerDataImportView extends GeneratorCommand implements ICommandStatus
 {
 
     use VoyagerDataCommon;
@@ -41,9 +42,9 @@ class VoyagerDataImportView extends GeneratorCommand
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return bool
      */
-    public function handle()
+    public function handle(): bool
     {
         $this->info("voyager:data:transport:import-data:view table name is: {$this->argument('tableName')}");
 
@@ -57,6 +58,6 @@ class VoyagerDataImportView extends GeneratorCommand
 
         $this->files->put($path, $this->buildView());
 
-        return 0;
+        return self::ALL_PROCESS_SUCCESS_CODE;
     }
 }

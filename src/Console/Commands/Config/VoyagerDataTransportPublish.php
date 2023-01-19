@@ -25,9 +25,9 @@ class VoyagerDataTransportPublish extends Command implements ICommandStatus
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return bool
      */
-    public function handle()
+    public function handle(): bool
     {
         $this->call('vendor:publish', ['--provider' => VoyagerDataTransportProvider::class]);
         return self::ALL_PROCESS_SUCCESS_CODE;

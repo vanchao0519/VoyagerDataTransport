@@ -26,7 +26,7 @@ class VoyagerDataTransportPublishTest extends TestCase implements ICommandStatus
     public function test_command(): void
     {
         $this->artisan("voyager:data:transport:publish:config")
-            ->assertExitCode(self::ALL_PROCESS_SUCCESS_CODE);
+            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
     }
 
     /**
