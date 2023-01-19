@@ -50,7 +50,7 @@
         }
     },
     "scripts": {
-        "test" : "php artisan test",
+        "test" : "php artisan test --process-isolation",
         "test_filter" : "php artisan test --filter",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

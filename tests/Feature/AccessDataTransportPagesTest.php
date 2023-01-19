@@ -22,7 +22,7 @@ class AccessDataTransportPagesTest extends TestCase
      *
      * @return void
      */
-    public function test_access_import_page (): void
+    public function test_access_page (): void
     {
         $response = $this->post('/admin/login', [
             'email' => $this->_email,
@@ -47,6 +47,13 @@ class AccessDataTransportPagesTest extends TestCase
         $view = $this->view("vendor.voyager.{$tableName}.export-data");
         $view->assertSee("export_{$tableName}");
         $view->assertSee("export_type");
+
+        $response = $this->post("/admin/import_{$tableName}/upload");
+        $response->assertRedirect();
+
+        $response = $this->post("/admin/export_{$tableName}/download");
+        $response->assertSuccessful();
+
     }
 
 
