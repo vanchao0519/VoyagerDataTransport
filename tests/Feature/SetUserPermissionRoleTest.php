@@ -75,9 +75,9 @@ class SetUserPermissionRoleTest extends TestCase
         ])->first();
 
         if ( true === Hash::check( $this->_password, $user->getAuthPassword() ) ) {
-            return $user->role_id;
+            return $user['role_id'];
         }
-        return false;
+        return -1;
     }
 
 

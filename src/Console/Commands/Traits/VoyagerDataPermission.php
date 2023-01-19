@@ -36,6 +36,7 @@ trait VoyagerDataPermission
      */
     protected function createPermission($key, $tableName)
     {
+        /** @mixin Permission **/
         $model = new Permission();
         $model->key = $key;
         $model->table_name = $tableName;
