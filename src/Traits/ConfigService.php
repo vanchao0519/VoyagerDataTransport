@@ -22,13 +22,11 @@ trait ConfigService {
      * Get config data
      *
      * @param string $file
-     * @return array|false|mixed
+     * @return array|false
      */
     protected function _getConfig (string $file = '' ) {
         $config = false;
         if ( file_exists( $file ) ) $config = require $file;
-        $hasConfig = is_array($config) && !empty( $config ) && ( count($config) > 0 );
-        $config = $hasConfig ? $config : false;
         return $config;
     }
 
