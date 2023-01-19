@@ -47,6 +47,7 @@ class AccessDataTransportPagesTest extends TestCase
         $view = $this->view("vendor.voyager.{$tableName}.export-data");
         $view->assertSee("export_{$tableName}");
         $view->assertSee("export_type");
+        $view->assertSee("Download");
 
         $response = $this->post("/admin/import_{$tableName}/upload");
         $response->assertRedirect();
