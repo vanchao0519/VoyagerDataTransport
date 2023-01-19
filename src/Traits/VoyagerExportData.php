@@ -43,13 +43,14 @@ trait VoyagerExportData {
         try {
             $this->setWriter($this->writerType);
             $this->writer->save($fileName);
-            $content = file_get_contents($fileName);
         } catch (\Exception $e) {
             exit($e->getMessage());
         }
 
         header("Content-Disposition: attachment; filename=$fileName");
-        exit($content);
+        ob_clean();
+        flush();
+        readfile($fileName);
     }
 
 
