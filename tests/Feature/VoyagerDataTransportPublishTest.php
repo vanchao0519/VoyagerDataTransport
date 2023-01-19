@@ -40,6 +40,11 @@ class VoyagerDataTransportPublishTest extends TestCase implements ICommandStatus
         $this->assertFileExists($this->_getPermissionFile());
     }
 
+    /**
+     * Validate route config detail.
+     *
+     * @return void
+     */
     public function test_validate_route_config (): void
     {
         $configs = require $this->_getRouteFile();
