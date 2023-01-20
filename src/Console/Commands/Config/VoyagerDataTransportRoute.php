@@ -44,7 +44,9 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
 
     protected function replaceConfig($stub)
     {
-        $config = $this->_generateConfig();
+        $tableName = $this->getNameInput();
+
+        $config = $this->_generateConfig($tableName);
 
         $recordArr = array_merge($config['get'], $config['post']);
 

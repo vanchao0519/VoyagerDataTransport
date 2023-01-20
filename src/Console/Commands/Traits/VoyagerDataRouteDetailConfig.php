@@ -104,10 +104,8 @@ trait VoyagerDataRouteDetailConfig
         return "{$pre}\\{$_namePre}{$baseName}";
     }
 
-    private function _generateConfig(): array
+    private function _generateConfig(string $tableName = ''): array
     {
-        $tableName = strtolower($this->getNameInput());
-
         $routeMappings = [
             'get' => $this->_getMapping($tableName),
             'post' => $this->_postMapping($tableName),
