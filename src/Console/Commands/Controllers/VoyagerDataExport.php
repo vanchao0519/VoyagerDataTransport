@@ -5,12 +5,14 @@ namespace VoyagerDataTransport\Console\Commands\Controllers;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
 use Illuminate\Console\GeneratorCommand;
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataControllerCommand;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 
 class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
 {
 
     use VoyagerDataCommon;
+    use VoyagerDataControllerCommand;
     use VoyagerDataController;
 
     const CONFIRM_REWRITE_EXIST_FILE_INFO = 'Do you want to rewrite an exist export controller file?';
@@ -66,7 +68,7 @@ class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
     {
         $name = $this->getNameInput();
 
-        if ( $this->isFileExists() && !$this->confirm(self::CONFIRM_REWRITE_EXIST_FILE_INFO, false)) {
+        if ( $this->isFileExists($name) && !$this->confirm(self::CONFIRM_REWRITE_EXIST_FILE_INFO, false)) {
             $this->warn(self::DO_NOT_REWRITE_INFO);
             return self::DO_NOT_REWRITE_CODE;
         }

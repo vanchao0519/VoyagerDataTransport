@@ -8,40 +8,9 @@ trait VoyagerDataController
 {
 
     /**
-     * Replace the class name for the given stub.
-     *
-     * @param  string  $stub
-     * @param  string  $name
-     * @return string
-     */
-    protected function replaceClass($stub, $name)
-    {
-        $tableName = strtolower($this->getNameInput());
-
-        $class = $this->getControllerName($tableName);
-
-        return str_replace(['{{ class }}', '{{ tableName }}'], [$class, $tableName], $stub);
-    }
-
-    /**
-     * Build the class with the given name.
-     *
-     * @param  string  $name
-     * @return string
-     *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     */
-    protected function buildClass($name)
-    {
-        $stub = $this->files->get($this->getStub());
-
-        return $this->replaceClass($stub, $name);
-    }
-
-    /**
      * Get the controller name .
      *
-     * @param  string  $name 
+     * @param  string  $name
      * @return string
      */    
     protected function getControllerName($name)
@@ -60,12 +29,11 @@ trait VoyagerDataController
     /**
      * Check controller file is exists.
      *
+     * @param  string  $tableName
      * @return boolean
      */
-    protected function isFileExists ()
+    protected function isFileExists (string $tableName = '')
     {
-        $tableName = $this->getNameInput();
-
         $fileName = "{$this->_filePath}{$this->getControllerName($tableName)}{$this->_fileExt}";
 
         return file_exists($fileName);

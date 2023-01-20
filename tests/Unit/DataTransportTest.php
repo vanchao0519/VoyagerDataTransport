@@ -68,7 +68,7 @@ class DataTransportTest extends \PHPUnit\Framework\TestCase {
 
     public function test_isFileExists ()
     {
-        $this->assertTrue($this->isFileExists());
+        $this->assertTrue($this->isFileExists($this->_tableName));
     }
 
 }

@@ -26,6 +26,20 @@ class VoyagerDataTransportExportControllerTest extends TestCase implements IComm
     protected $_controllerNamePre = 'Export';
 
     /**
+     * Controller file path.
+     *
+     * @var string
+     */
+    protected $_filePath = 'app/VoyagerDataTransport/Http/Controllers/';
+
+    /**
+     * Controller file extension.
+     *
+     * @var string
+     */
+    protected $_fileExt = '.php';
+
+    /**
      * Test that generate export controller command is worked.
      *
      * @return void
@@ -44,9 +58,7 @@ class VoyagerDataTransportExportControllerTest extends TestCase implements IComm
     public function test_is_file_exist (): void
     {
         $fileName = $this->getControllerName($this->_getTableName());
-        $ext = ".php";
-        $path = 'app/VoyagerDataTransport/Http/Controllers/';
-        $file = "{$path}{$fileName}{$ext}";
+        $file = "{$this->_filePath}{$fileName}{$this->_fileExt}";
         $this->assertFileExists($file);
     }
 }
