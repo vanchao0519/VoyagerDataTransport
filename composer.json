@@ -51,7 +51,7 @@
         }
     },
     "scripts": {
-        "phpstan_analyse" : "./vendor/bin/phpstan analyse --memory-limit=2G",
+        "phpstan" : "./vendor/bin/phpstan analyse --memory-limit=2G",
         "test" : "php artisan test --process-isolation",
         "test_filter" : "php artisan test --filter",
         "post-autoload-dump": [
