@@ -52,7 +52,8 @@
     },
     "scripts": {
         "phpstan" : "./vendor/bin/phpstan analyse --memory-limit=2G",
-        "test" : "php artisan test --process-isolation",
+        "test" : "php artisan test",
+        "test_process" : "php artisan test --process-isolation",
         "test_filter" : "php artisan test --filter",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
