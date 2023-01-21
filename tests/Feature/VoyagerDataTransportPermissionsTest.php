@@ -76,7 +76,7 @@ class VoyagerDataTransportPermissionsTest extends TestCase implements IPermissio
     /**
      * Get the data from config file
      *
-     * @return array
+     * @return array< int, string >
      */
     private function _getConfig (): array
     {

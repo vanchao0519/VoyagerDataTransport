@@ -7,10 +7,19 @@ use VoyagerDataTransport\Contracts\IRouteParameters;
 use VoyagerDataTransport\Traits\ConfigService;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Class WebRoutesService
+ * @package VoyagerDataTransport\Services
+ */
 class WebRoutesService implements IRouteParameters
 {
     use ConfigService;
 
+    /**
+     * Process handle function
+     *
+     * @return void
+     */
     public function handle (): void
     {
         $routes = $this->getConfig();
@@ -24,12 +33,25 @@ class WebRoutesService implements IRouteParameters
         }
     }
 
+    /**
+     * Get the array type config
+     *
+     * @return false|string[][][][]
+     */
     public function getConfig ()
     {
         $file = $this->_getAppPath() . '/VoyagerDataTransport/config/route/config.php';
         return $this->_getConfig($file);
     }
 
+
+    /**
+     * Route register
+     *
+     * @param string $verb
+     * @param string[][] $dataSets
+     * @return void
+     */
     private function regRoute (string $verb, array $dataSets): void {
         $verb = strtolower($verb);
         if (in_array($verb, [self::GET, self::POST])) {

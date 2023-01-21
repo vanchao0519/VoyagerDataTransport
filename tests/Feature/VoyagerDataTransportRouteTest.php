@@ -101,7 +101,7 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
     /**
      * Get the config data from the route detail config
      *
-     * @return array
+     * @return array< string, array<string, callable> >
      */
     private function _getConfig (): array
     {

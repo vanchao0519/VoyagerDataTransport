@@ -2,20 +2,76 @@
 
 namespace VoyagerDataTransport\Console\Commands\Traits;
 
+/**
+ * Trait VoyagerDataRouteDetailConfig
+ * @package VoyagerDataTransport\Console\Commands\Traits
+ */
 trait VoyagerDataRouteDetailConfig
 {
+
+    /**
+     * Import controller pre
+     *
+     * @var string
+     */
     private $_importPre = 'Import';
+
+    /**
+     * Export controller pre
+     *
+     * @var string
+     */
     private $_exportPre = 'Export';
 
+    /**
+     * Import url pre
+     *
+     * @var string
+     */
     private $_urlImportPre = '/import_';
+
+    /**
+     * Export url pre
+     *
+     * @var string
+     */
     private $_urlExportPre = '/export_';
 
+    /**
+     * Import alias pre
+     *
+     * @var string
+     */
     private $_aliasImportPre = 'voyager.browse_import_';
+
+    /**
+     * Export alias pre
+     *
+     * @var string
+     */
     private $_aliasExportPre = 'voyager.browse_export_';
 
+    /**
+     * Upload alias pre
+     *
+     * @var string
+     */
     private $_uploadPre = 'voyager.import_';
+
+    /**
+     * Download alias pre
+     *
+     * @var string
+     */
     private $_downloadPre = 'voyager.export_';
 
+
+    /**
+     * Route [GET] mapping
+     *
+     * @param string $tableName
+     * @return \Closure[][]
+     */
     private function _getMapping(string $tableName): array
     {
         $_mapping = [
@@ -52,6 +108,12 @@ trait VoyagerDataRouteDetailConfig
         return $_mapping;
     }
 
+    /**
+     * Route [POST] mapping
+     *
+     * @param string $tableName
+     * @return \Closure[][]
+     */
     private function _postMapping(string $tableName): array
     {
         $_mapping = [
@@ -88,6 +150,13 @@ trait VoyagerDataRouteDetailConfig
         return $_mapping;
     }
 
+    /**
+     * Generate controller name
+     *
+     * @param string $_namePre
+     * @param string $_tableName
+     * @return string
+     */
     private function _controllerNameGenerate(string $_namePre, string $_tableName): string
     {
 
@@ -104,6 +173,13 @@ trait VoyagerDataRouteDetailConfig
         return "{$pre}\\{$_namePre}{$baseName}";
     }
 
+
+    /**
+     * Generate config data
+     *
+     * @param string $tableName
+     * @return array<string, array<int, array<string, string>>>
+     */
     private function _generateConfig(string $tableName = ''): array
     {
         $routeMappings = [
@@ -124,6 +200,13 @@ trait VoyagerDataRouteDetailConfig
         return $routeConfig;
     }
 
+    /**
+     * Iterate replace search value
+     *
+     * @param int $key
+     * @param string $pre
+     * @return string
+     */
     private function _getSearchValue(int $key, string $pre): string
     {
         return "{{ {$pre}{$key} }}";

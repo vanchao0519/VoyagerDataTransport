@@ -7,6 +7,10 @@ use Illuminate\Console\GeneratorCommand;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 use VoyagerDataTransport\Contracts\IPermissionParameters;
 
+/**
+ * Class VoyagerDataTransportPermissions
+ * @package VoyagerDataTransport\Console\Commands\Config
+ */
 class VoyagerDataTransportPermissions extends GeneratorCommand implements IPermissionParameters, ICommandStatus
 {
 
@@ -26,11 +30,24 @@ class VoyagerDataTransportPermissions extends GeneratorCommand implements IPermi
      */
     protected $description = 'Generate voyager data transport permission detail config file';
 
+
+    /**
+     * Get stub
+     *
+     * @return string
+     */
     protected function getStub()
     {
         return $this->resolveStubPath('/stubs/permission.detail.config.stub');
     }
 
+
+    /**
+     * Get path
+     *
+     * @param string $name
+     * @return string
+     */
     protected function getPath($name): string
     {
         $slug = strtolower($name);
@@ -40,7 +57,13 @@ class VoyagerDataTransportPermissions extends GeneratorCommand implements IPermi
         return $path;
     }
 
-    protected function replaceConfig($stub)
+    /**
+     * Replace config
+     *
+     * @param string $stub
+     * @return string|string[]
+     */
+    protected function replaceConfig(string $stub)
     {
         $config = $this->_generateConfig();
 
@@ -57,6 +80,12 @@ class VoyagerDataTransportPermissions extends GeneratorCommand implements IPermi
         return str_replace($search, $config, $stub);
     }
 
+    /**
+     * Build config
+     *
+     * @return string|string[]
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     protected function buildConfig()
     {
         $stub = $this->files->get($this->getStub());
@@ -64,6 +93,12 @@ class VoyagerDataTransportPermissions extends GeneratorCommand implements IPermi
         return $this->replaceConfig($stub);
     }
 
+
+    /**
+     * Generate config data
+     *
+     * @return string[]
+     */
     private function _generateConfig(): array
     {
         $_tableName = strtolower($this->getNameInput()) ;

@@ -4,6 +4,10 @@ namespace Tests\Unit;
 
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
 
+/**
+ * Class DataTransportTest
+ * @package Tests\Unit
+ */
 class DataTransportTest extends \PHPUnit\Framework\TestCase {
 
     use VoyagerDataController;
@@ -19,8 +23,7 @@ class DataTransportTest extends \PHPUnit\Framework\TestCase {
      * Mock data table name.
      *
      * @var string
-     */
-    private $_tableName = "posts";
+     */ private $_tableName = "posts";
 
     /**
      * Controller file path.
@@ -36,6 +39,11 @@ class DataTransportTest extends \PHPUnit\Framework\TestCase {
      */
     protected $_fileExt = '.php';
 
+    /**
+     * Convert table-name to controoler-name
+     *
+     * @return string
+     */
     private function _tableNameToControllerName (string $tableName): string
     {
         $tableName = strtolower($tableName);
@@ -49,24 +57,44 @@ class DataTransportTest extends \PHPUnit\Framework\TestCase {
         return $baseName;
     }
 
-    protected function getNameInput()
+    /**
+     * Get table name
+     *
+     * @return string
+     */
+    protected function getNameInput(): string
     {
         return $this->_tableName;
     }
 
+    /**
+     * Generate result for test case
+     *
+     * @return string
+     */
     private function _expectedControllerName (): string
     {
         return "{$this->_controllerNamePre}{$this->_tableNameToControllerName($this->_tableName)}";
     }
 
-    public function test_getControllerName ()
+    /**
+     * Test getControllerName function
+     *
+     * @return void
+     */
+    public function test_getControllerName (): void
     {
         $expected = $this->_expectedControllerName();
         $actual = $this->getControllerName($this->_tableName);
         $this->assertEquals($expected, $actual);
     }
 
-    public function test_isFileExists ()
+    /**
+     * Test file exists
+     *
+     * @return void
+     */
+    public function test_isFileExists (): void
     {
         $this->assertTrue($this->isFileExists($this->_tableName));
     }

@@ -22,7 +22,7 @@ trait ConfigService {
      * Get config data
      *
      * @param string $file
-     * @return array|false
+     * @return array<int,array<string,array<int,array<string,string>>>>|array<int, string>|false
      */
     protected function _getConfig (string $file = '' ) {
         $config = false;

@@ -8,6 +8,10 @@ use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataRouteDetailConfig;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 use VoyagerDataTransport\Contracts\IRouteParameters;
 
+/**
+ * Class VoyagerDataTransportRoute
+ * @package VoyagerDataTransport\Console\Commands\Config
+ */
 class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParameters, ICommandStatus
 {
 
@@ -28,11 +32,23 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
      */
     protected $description = 'Generate voyager data transport route detail config file';
 
-    protected function getStub()
+
+    /**
+     * Get stub
+     *
+     * @return string
+     */
+    protected function getStub(): string
     {
         return $this->resolveStubPath('/stubs/route.detail.config.stub');
     }
 
+    /**
+     * Get path
+     *
+     * @param string $name
+     * @return string
+     */
     protected function getPath($name): string
     {
         $slug = strtolower($name);
@@ -42,7 +58,13 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
         return $path;
     }
 
-    protected function replaceConfig($stub)
+    /**
+     * Replace config
+     *
+     * @param string $stub
+     * @return string|string[]
+     */
+    protected function replaceConfig(string $stub)
     {
         $tableName = $this->getNameInput();
 
@@ -63,6 +85,12 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
         return str_replace($search, $replace, $stub);
     }
 
+    /**
+     * Build config
+     *
+     * @return string|string[]
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     protected function buildConfig()
     {
         $stub = $this->files->get($this->getStub());

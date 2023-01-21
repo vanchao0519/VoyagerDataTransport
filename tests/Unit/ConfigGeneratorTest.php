@@ -2,25 +2,83 @@
 
 namespace Tests\Unit;
 
-use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
-
 class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
 
+    /**
+     * Laravel route verbs name [get].
+     *
+     * @var string
+     */
     const ROUTE_GET = 'get';
+
+    /**
+     * Laravel route verbs name [post].
+     *
+     * @var string
+     */
     const ROUTE_POST = 'post';
 
+    /**
+     * Import controller permission pre.
+     *
+     * @var string
+     */
     const PERMISSION_PRE_IMPORT = 'browse_import_';
+
+    /**
+     * Export controller permission pre.
+     *
+     * @var string
+     */
     const PERMISSION_PRE_EXPORT = 'browse_export_';
 
+    /**
+     * Test data table name.
+     *
+     * @var string
+     */
     private $_tableName = 'posts';
 
+    /**
+     * Import controller pre.
+     *
+     * @var string
+     */
     private $_importPre = 'Import';
+
+    /**
+     * Export controller pre.
+     *
+     * @var string
+     */
     private $_exportPre = 'Export';
 
+    /**
+     * Import url pre.
+     *
+     * @var string
+     */
     private $_urlImportPre = '/import_';
+
+    /**
+     * Export url pre.
+     *
+     * @var string
+     */
     private $_urlExportPre = '/export_';
 
+    /**
+     * Import alias pre.
+     *
+     * @var string
+     */
     private $_aliasImportPre = 'voyager.browse_import_';
+
+    /**
+     * Export alias pre.
+     *
+     * @var string
+     */
     private $_aliasExportPre = 'voyager.browse_export_';
 
     /**
@@ -190,7 +248,7 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
      * Create [GET] route config data stub.
      *
      * @param  string  $tableName
-     * @return array
+     * @return array< int, array<string, callable> >
      */
     private function _getMapping (string $tableName): array
     {
@@ -232,7 +290,7 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
     /**
      * Create [POST] route config data stub.
      *
-     * @return array
+     * @return array< int, array<string, callable> >
      */
     private function _postMapping (string $tableName): array
     {

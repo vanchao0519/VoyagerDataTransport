@@ -37,7 +37,7 @@ class SetUserPermissionRoleTest extends TestCase
     /**
      * Get permission id from data table permission
      *
-     * @return array
+     * @return array< int, int >
      */
     private function _getPermissionIds(): array
     {
@@ -85,7 +85,7 @@ class SetUserPermissionRoleTest extends TestCase
      * Insert record to data table permission_role
      *
      * @param int $role_id
-     * @param array $permission_ids
+     * @param array< int, int > $permission_ids
      * @return bool
      */
     private function _setPermissionRole ( int $role_id, array $permission_ids ): bool
