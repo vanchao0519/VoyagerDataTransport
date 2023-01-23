@@ -70,6 +70,7 @@ class SetUserPermissionRoleTest extends TestCase
      */
     private function _getRoleId(): int
     {
+        /** @var User **/
         $user = User::query()->where([
             'email' => $this->_email,
         ])->first();
