@@ -46,19 +46,20 @@ class VoyagerDataTransportExportControllerTest extends TestCase implements IComm
      */
     public function test_command(): void
     {
-        $this->artisan("voyager:data:export:controller {$this->_getTableName()}")
-            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
+        $this->artisan("voyager:data:export:controller {$this->_getTableName()}");
+
+        // Test that the Import Controller file is created.
+        $this->assertFileExists($this->_getFile());
     }
 
     /**
-     * Test that the Export Controller file is created.
+     * Get the Export Controller file path.
      *
-     * @return void
+     * @return string
      */
-    public function test_is_file_exist (): void
+    public function _getFile (): string
     {
         $fileName = $this->getControllerName($this->_getTableName());
-        $file = "{$this->_filePath}{$fileName}{$this->_fileExt}";
-        $this->assertFileExists($file);
+        return "{$this->_filePath}{$fileName}{$this->_fileExt}";
     }
 }

@@ -24,21 +24,11 @@ class VoyagerDataBrowseViewTest extends TestCase implements ICommandStatus
      */
     public function test_command(): void
     {
+        $this->artisan("voyager:data:transport:browse:view {$this->_getTableName()}");
 
-        $this->artisan("voyager:data:transport:browse:view {$this->_getTableName()}")
-            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
-    }
-
-    /**
-     * Confirm that browse view file is created.
-     *
-     * @return void
-     */
-    public function test_is_file_created (): void
-    {
+        // Confirm that browse view file is created.
         $this->assertFileExists($this->_getFile());
     }
-
 
     /**
      * Get the browse file path

@@ -61,7 +61,7 @@ class VoyagerDataTransportPermissions extends GeneratorCommand implements IPermi
      * Replace config
      *
      * @param string $stub
-     * @return string|string[]
+     * @return string
      */
     protected function replaceConfig(string $stub)
     {
@@ -83,7 +83,7 @@ class VoyagerDataTransportPermissions extends GeneratorCommand implements IPermi
     /**
      * Build config
      *
-     * @return string|string[]
+     * @return string
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function buildConfig()

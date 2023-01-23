@@ -44,7 +44,9 @@ class VoyagerDataImportPermission extends Command implements ICommandStatus
      */
     public function handle(): bool
     {
-        $tableName = strtolower($this->argument('tableName'));
+        /** @var string **/
+        $tableName = $this->argument('tableName');
+        $tableName = strtolower($tableName);
         if (false === $this->isExportPermissionExist($tableName) ) {
             if (0 < $this->createPermission("{$this->_keyPre}{$tableName}", $tableName)) {
                 $this->info(self::CREATING_PERMISSION_RECORD_INFO);

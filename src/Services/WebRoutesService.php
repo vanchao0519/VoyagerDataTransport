@@ -36,11 +36,12 @@ class WebRoutesService implements IRouteParameters
     /**
      * Get the array type config
      *
-     * @return false|string[][][][]
+     * @return false|array< int, array< string, array< int, array< string, string > > > >
      */
     public function getConfig ()
     {
         $file = $this->_getAppPath() . '/VoyagerDataTransport/config/route/config.php';
+        /** @var false|array< int, array< string, array< int, array< string, string > > > > **/
         return $this->_getConfig($file);
     }
 

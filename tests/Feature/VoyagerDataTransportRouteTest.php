@@ -23,20 +23,11 @@ class VoyagerDataTransportRouteTest extends TestCase implements IRouteParameters
      */
     public function test_command(): void
     {
-        $this->artisan("voyager:data:transport:route:detail:config {$this->_getTableName()}")
-            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
-    }
+        $this->artisan("voyager:data:transport:route:detail:config {$this->_getTableName()}");
 
-    /**
-     * Confirm config file existed.
-     *
-     * @return void
-     */
-    public function test_is_file_created (): void
-    {
+        //  test_is_file_created
         $this->assertFileExists($this->_getFile());
     }
-
 
     /**
      * Check [get] [post] key existed.

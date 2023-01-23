@@ -46,11 +46,11 @@ class VoyagerDataImportView extends GeneratorCommand implements ICommandStatus
      */
     public function handle(): bool
     {
-        $this->info("voyager:data:transport:import-data:view table name is: {$this->argument('tableName')}");
+        $tableName = $this->getNameInput();
 
-        $name = $this->getNameInput();
+        $this->info("voyager:data:transport:import-data:view table name is: {$tableName}");
 
-        $path = $this->getPath($name);
+        $path = $this->getPath($tableName);
 
         $this->info("voyager:data:transport:import-data:view path name is: {$path}");
 

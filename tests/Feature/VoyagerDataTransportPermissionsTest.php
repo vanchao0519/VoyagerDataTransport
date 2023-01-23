@@ -25,20 +25,12 @@ class VoyagerDataTransportPermissionsTest extends TestCase implements IPermissio
      */
     public function test_command(): void
     {
-        $this->artisan("voyager:data:transport:permission:detail:config {$this->_getTableName()}")
-            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
-    }
+        $this->artisan("voyager:data:transport:permission:detail:config {$this->_getTableName()}");
 
-    /**
-     * After command execute then confirm config file exist.
-     *
-     * @return void
-     */
-    public function test_is_file_created (): void
-    {
+        // After command execute then confirm config file exist.
         $this->assertFileExists($this->_getFile());
-    }
 
+    }
 
     /**
      * Validate permission

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataPermission;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 
 /**
@@ -15,6 +16,14 @@ use VoyagerDataTransport\Contracts\ICommandStatus;
 class VoyagerDataTransportExportPermissionTest extends TestCase implements ICommandStatus
 {
     use ParameterTrait;
+    use VoyagerDataPermission;
+
+    /**
+     * Export permission pre.
+     *
+     * @var string
+     */
+    private $_keyPre = 'browse_export_';
 
     /**
      * Confirm that generate permission detail config command is worked.
@@ -23,7 +32,10 @@ class VoyagerDataTransportExportPermissionTest extends TestCase implements IComm
      */
     public function test_command (): void
     {
-        $this->artisan("voyager:data:transport:export:permission {$this->_getTableName()}")
-            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
+        /** @var string **/
+        $tableName = $this->_getTableName();
+        $this->artisan("voyager:data:transport:export:permission {$tableName}");
+
+        $this->assertTrue($this->isPermissionExist($this->_keyPre, $tableName));
     }
 }

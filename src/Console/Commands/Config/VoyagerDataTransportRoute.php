@@ -62,7 +62,7 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
      * Replace config
      *
      * @param string $stub
-     * @return string|string[]
+     * @return string
      */
     protected function replaceConfig(string $stub)
     {
@@ -88,7 +88,7 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
     /**
      * Build config
      *
-     * @return string|string[]
+     * @return string
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function buildConfig()

@@ -74,10 +74,17 @@ class ClearMockDataTest extends TestCase
      * @return bool
      */
     protected static function delTree(string $dir): bool {
-        $files = array_diff(scandir($dir), array('.','..'));
+
+        $_dir = scandir($dir);
+
+        $_dir = is_array($_dir) ? $_dir : [];
+
+        $files = array_diff( $_dir, ['.','..'] );
+
         foreach ($files as $file) {
             (is_dir("$dir/$file")) ? self::delTree("$dir/$file") : unlink("$dir/$file");
         }
+
         return rmdir($dir);
     }
 }

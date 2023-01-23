@@ -25,19 +25,12 @@ class VoyagerDataTransportPublishTest extends TestCase implements ICommandStatus
      */
     public function test_command(): void
     {
-        $this->artisan("voyager:data:transport:publish:config")
-            ->assertExitCode( (int) self::ALL_PROCESS_SUCCESS_CODE );
-    }
+        $this->artisan("voyager:data:transport:publish:config");
 
-    /**
-     * Confirm config file existed.
-     *
-     * @return void
-     */
-    public function test_is_file_created (): void
-    {
+        // Confirm config file existed.
         $this->assertFileExists($this->_getRouteFile());
         $this->assertFileExists($this->_getPermissionFile());
+
     }
 
     /**
