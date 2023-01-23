@@ -36,10 +36,10 @@ trait VoyagerDataPermission
      */
     protected function createPermission($key, $tableName)
     {
-        /** @var mixed $model **/
+        /** @var Permission **/
         $model = new Permission();
-        $model->key = $key;
-        $model->table_name = $tableName;
+        $model->key = $key; /** @phpstan-ignore-line */
+        $model->table_name = $tableName; /** @phpstan-ignore-line */
         $model->save();
         return $model->id;
     }

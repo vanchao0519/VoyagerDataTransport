@@ -37,7 +37,7 @@ class SetUserPermissionRoleTest extends TestCase
     /**
      * Get permission id from data table permission
      *
-     * @return array< int, int >
+     * @return int[]
      */
     private function _getPermissionIds(): array
     {
@@ -59,6 +59,7 @@ class SetUserPermissionRoleTest extends TestCase
             ->pluck('id')
             ->toArray();
 
+        /** @var int[] **/
         return $result;
     }
 
@@ -76,6 +77,7 @@ class SetUserPermissionRoleTest extends TestCase
         ])->first();
 
         if ( true === Hash::check( $this->_password, $user->getAuthPassword() ) ) {
+            /** @var int **/
             return $user['role_id'];
         }
         return -1;
