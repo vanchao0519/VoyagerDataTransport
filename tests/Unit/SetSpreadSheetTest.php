@@ -108,7 +108,7 @@ class SetSpreadSheetTest extends TestCase
      * @param $tableName
      * @return string[]
      */
-    private function _getColumns($tableName): array
+    private function _getColumns(string $tableName = ''): array
     {
         $columns = [
             'title',
@@ -122,7 +122,7 @@ class SetSpreadSheetTest extends TestCase
     /**
      * Get the content from colNumsArr
      *
-     * @param array $colNumsArr
+     * @param string[] $colNumsArr
      * @return string
      */
     private function _getContent (array $colNumsArr): string
