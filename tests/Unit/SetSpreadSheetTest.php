@@ -92,7 +92,12 @@ class SetSpreadSheetTest extends TestCase
             $k = "{$this->prefix}{$value}{$this->affix}";
             $listStr = '$list';
             $valueStr = '$value';
-            $v = "function ( {$listStr} ) { {$valueStr} = {$listStr}->{$value}; return !empty({$valueStr}) ? {$valueStr} : '' }";
+            $v = <<<EOT
+    function ( {$listStr} ) {
+        {$valueStr} = {$listStr}->{$value};
+        return !empty({$valueStr}) ? {$valueStr} : '';
+    }
+EOT;
             return "{$k} => {$v},";
         };
         $colNumsArr = array_map( $callBack, $columns );
