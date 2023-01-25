@@ -53,7 +53,7 @@ class SetSpreadSheetService
         };
         $colNumsArr = array_map( $callBack, array_keys($columns), $columns );
 
-        return $this->_getContent($colNumsArr);
+        return $this->_getContent($colNumsArr, "\t\t");
     }
 
     /**
@@ -88,10 +88,10 @@ class SetSpreadSheetService
             $valueStr = '$value';
             $v = <<<EOT
 function ( {$listObj} ) {
-    {$valueStr} = {$listObj}->{$value};
-    if ( is_numeric( {$valueStr} ) ) return {$valueStr};
-    return !empty( {$valueStr} ) ? {$valueStr} : '';
-}
+                {$valueStr} = {$listObj}->{$value};
+                if ( is_numeric( {$valueStr} ) ) return {$valueStr};
+                return !empty( {$valueStr} ) ? {$valueStr} : '';
+            }
 EOT;
             return "{$k} => {$v},";
         };
@@ -128,14 +128,15 @@ EOT;
      * Get the content from colNumsArr
      *
      * @param string[] $colNumsArr
+     * @param string $tableSignal
      * @return string
      */
-    private function _getContent (array $colNumsArr): string
+    private function _getContent (array $colNumsArr, string $tableSignal = "\t\t\t"): string
     {
         $content = '';
 
         foreach ($colNumsArr as $k => $column) {
-            $_tableSignal = 0 === $k ? "" : "\t";
+            $_tableSignal = 0 === $k ? "" : "{$tableSignal}";
             $content .= "{$_tableSignal}{$column}" . PHP_EOL;
         }
 
