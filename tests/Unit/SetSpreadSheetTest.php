@@ -3,9 +3,12 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Tests\Unit\Traits\VoyagerDataControllerStub;
 
 class SetSpreadSheetTest extends TestCase
 {
+
+    use VoyagerDataControllerStub;
 
     /**
      * Emulate table name.
@@ -106,39 +109,6 @@ EOT;
 
         $content = $this->_getContent($colNumsArr);
         $this->assertIsString($content);
-    }
-
-    /**
-     * Emulate _getColumns function
-     *
-     * @param $tableName
-     * @return string[]
-     */
-    private function _getColumns(string $tableName = ''): array
-    {
-        $columns = [
-            'title',
-            'body',
-            'meta_description',
-        ];
-
-        return $columns;
-    }
-
-    /**
-     * Get the content from colNumsArr
-     *
-     * @param string[] $colNumsArr
-     * @return string
-     */
-    private function _getContent (array $colNumsArr): string
-    {
-        $content = '';
-        foreach ($colNumsArr as $k => $column) {
-            $_tableSignal = 0 === $k ? "" : "\t";
-            $content .= "{$_tableSignal}{$column}" . PHP_EOL;
-        }
-        return $content;
     }
 
 }
