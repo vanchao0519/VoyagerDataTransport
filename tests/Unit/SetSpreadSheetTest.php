@@ -95,6 +95,7 @@ class SetSpreadSheetTest extends TestCase
             $v = <<<EOT
     function ( {$listObj} ) {
         {$valueStr} = {$listObj}->{$value};
+        if ( is_numeric( {$valueStr} ) ) return {$valueStr};
         return !empty({$valueStr}) ? {$valueStr} : '';
     }
 EOT;

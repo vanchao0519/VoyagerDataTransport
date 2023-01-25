@@ -7,6 +7,7 @@ use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
 use Illuminate\Console\GeneratorCommand;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataControllerCommand;
 use VoyagerDataTransport\Contracts\ICommandStatus;
+use VoyagerDataTransport\Services\SetSpreadSheetService;
 
 class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
 {
@@ -54,9 +55,37 @@ class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
      */
     protected $_fileExt = '.php';
 
+
+    /**
+     * Get stub
+     *
+     * @return string
+     */
     protected function getStub()
     {
         return $this->resolveStubPath('/stubs/ExportDataController.stub');
+    }
+
+    /**
+     * Replace the class name for the given stub.
+     *
+     * @param  string  $stub
+     * @param  string  $name
+     * @return string
+     */
+    protected function replaceClass($stub, $name)
+    {
+        $tableName = strtolower($this->getNameInput());
+
+        $class = $this->getControllerName($tableName);
+
+        $setSpreadSheet = new SetSpreadSheetService($tableName);
+
+        return str_replace(
+            ['{{ class }}', '{{ tableName }}', '{{ ColNum }}', '{{ ColTitleMaps }}', '{{ ColFieldMaps }}'],
+            [$class, $tableName, $setSpreadSheet->setColNum(), $setSpreadSheet->setTitleMaps(), $setSpreadSheet->setFieldMaps()],
+            $stub,
+        );
     }
 
     /**

@@ -23,14 +23,14 @@ class {{ class }} extends Controller
     protected function setSpreadSheet()
     {
 
-        $title_col = 1;
+        {{ ColNum }}
 
         $colTitleMaps = [
-            $title_col => 'title',
+            {{ ColTitleMaps }}
         ];
 
         $colFieldMaps = [
-            $title_col => function( $list ) { return $list->title; },
+            {{ ColFieldMaps }}
         ];
 
         $row = 1;
