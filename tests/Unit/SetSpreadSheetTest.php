@@ -90,11 +90,11 @@ class SetSpreadSheetTest extends TestCase
 
         $callBack = function ( string $value ): string {
             $k = "{$this->prefix}{$value}{$this->affix}";
-            $listStr = '$list';
+            $listObj = '$list';
             $valueStr = '$value';
             $v = <<<EOT
-    function ( {$listStr} ) {
-        {$valueStr} = {$listStr}->{$value};
+    function ( {$listObj} ) {
+        {$valueStr} = {$listObj}->{$value};
         return !empty({$valueStr}) ? {$valueStr} : '';
     }
 EOT;
