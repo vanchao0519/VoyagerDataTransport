@@ -7,6 +7,7 @@ use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
 use Illuminate\Console\GeneratorCommand;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataControllerCommand;
 use VoyagerDataTransport\Contracts\ICommandStatus;
+use VoyagerDataTransport\Services\ImportDataService;
 
 class VoyagerDataImport extends GeneratorCommand implements ICommandStatus
 {
@@ -52,11 +53,39 @@ class VoyagerDataImport extends GeneratorCommand implements ICommandStatus
      *
      * @var string
      */
-    protected $_fileExt = '.php';    
+    protected $_fileExt = '.php';
 
+
+    /**
+     * Get stub
+     *
+     * @return string
+     */
     protected function getStub()
     {
         return $this->resolveStubPath('/stubs/ImportDataController.stub');
+    }
+
+    /**
+     * Replace the class name for the given stub.
+     *
+     * @param  string  $stub
+     * @param  string  $name
+     * @return string
+     */
+    protected function replaceClass($stub, $name)
+    {
+        $tableName = strtolower($this->getNameInput());
+
+        $class = $this->getControllerName($tableName);
+
+        $service = new ImportDataService($tableName);
+
+        return str_replace(
+            ['{{ class }}', '{{ tableName }}', '{{ const_fields }}', '{{ import_data_maps }}'],
+            [$class, $tableName, $service->setConstFields(), $service->setInsertMaps()],
+            $stub,
+        );
     }
 
     /**

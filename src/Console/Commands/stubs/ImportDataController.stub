@@ -12,7 +12,7 @@ class {{ class }} extends Controller
 
     const SKIP_HEADER = 10;
 
-    const COL_NAME_01 = 0;
+    {{ const_fields }}
 
     public function index()
     {
@@ -32,7 +32,7 @@ class {{ class }} extends Controller
                 function () use ($data) {
                     DB::table('{{ tableName }}')
                         ->insert([
-                            'colName01' => $data[self::COL_NAME_01],
+                            {{ import_data_maps }}
                         ]);
                 }
             );

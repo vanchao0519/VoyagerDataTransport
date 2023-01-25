@@ -1,21 +1,12 @@
 <?php
 
-namespace Tests\Unit;
+namespace VoyagerDataTransport\Services;
 
-use PHPUnit\Framework\TestCase;
-use Tests\Unit\Traits\VoyagerDataControllerStub;
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataControllerStub;
 
-class ImportDataTest extends TestCase
+class ImportDataService
 {
-
     use VoyagerDataControllerStub;
-
-    /**
-     * Emulate table name.
-     *
-     * @var string
-     */
-    const POSTS_TABLE_NAME = 'posts';
 
     /**
      * Value affix.
@@ -25,13 +16,30 @@ class ImportDataTest extends TestCase
     private $affix = '_col';
 
     /**
-     * Set const fields.
+     * Data table name.
+     *
+     * @var string
+     */
+    private $_tableName;
+
+    /**
+     * Constructor function
      *
      * @return void
      */
-    public function test_set_const_fields (): void
+    public function __construct(string $tableName)
     {
-        $columns = $this->_getColumns(self::POSTS_TABLE_NAME);
+        $this->_tableName = $tableName;
+    }
+
+    /**
+     * Set const fields
+     *
+     * @return string
+     */
+    public function setConstFields (): string
+    {
+        $columns = $this->_getColumns();
 
         $callBack = function ( int $key, string $value ): string {
             $const_field = "{$value}{$this->affix}";
@@ -43,20 +51,18 @@ class ImportDataTest extends TestCase
         };
 
         $colNumsArr = array_map( $callBack, array_keys($columns), $columns );
-        $this->assertIsArray($colNumsArr);
 
-        $content = $this->_getContent($colNumsArr);
-        $this->assertIsString($content);
+        return $this->_getContent($colNumsArr, "\t");
     }
 
     /**
-     * Set insert maps.
+     * Set insert maps
      *
-     * @return void
+     * @return string
      */
-    public function test_set_insert_maps (): void
+    public function setInsertMaps (): string
     {
-        $columns = $this->_getColumns(self::POSTS_TABLE_NAME);
+        $columns = $this->_getColumns();
 
         $callBack = function ( string $value ): string {
             $left_variable = "{$value}";
@@ -69,9 +75,8 @@ class ImportDataTest extends TestCase
         };
 
         $colNumsArr = array_map( $callBack, $columns );
-        $this->assertIsArray($colNumsArr);
 
-        $content = $this->_getContent($colNumsArr);
-        $this->assertIsString($content);
+        return $this->_getContent($colNumsArr, "\t\t\t\t\t\t\t");
     }
+
 }
