@@ -82,6 +82,34 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
     private $_aliasExportPre = 'voyager.browse_export_';
 
     /**
+     * Key url.
+     *
+     * @var string
+     */
+    private $_url = 'url';
+
+    /**
+     * Key controller name.
+     *
+     * @var string
+     */
+    private $_controllerName = 'controllerName';
+
+    /**
+     * Key action name.
+     *
+     * @var string
+     */
+    private $_actionName = 'actionName';
+
+    /**
+     * Key alias.
+     *
+     * @var string
+     */
+    private $_alias = 'alias';
+
+    /**
      * Test import and export permission config data set.
      *
      * @return void
@@ -231,6 +259,61 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
         $this->assertIsArray($search);
         $this->assertIsArray($replace);
         $this->assertEquals(count($search), count($replace));
+    }
+
+    /**
+     * Test set get mapping.
+     *
+     * @return void
+     */
+    public function test_set_get_mapping (): void
+    {
+        $mappings = $this->_getMapping($this->_tableName);
+        $this->assertIsArray($mappings);
+
+        $keys = [
+            $this->_url,
+            $this->_controllerName,
+            $this->_actionName,
+            $this->_alias,
+        ];
+
+        $callBack = function ( array $setting ) use ($keys) : array {
+            $array = [];
+            foreach ($keys as $key) $array[$key] = $setting[$key]();
+            return $array;
+        };
+
+        $content = array_map($callBack, $mappings);
+        $this->assertIsArray($content);
+
+        $callBack = function ( array $setting ) use ($keys) : string {
+            $content = '';
+            foreach ($keys as $key => $value) {
+                $tableSignal = 0 === $key ? '' : "\t";
+                $content .= "{$tableSignal}'{$value}' => '{$setting[$value]}'," . PHP_EOL;
+            }
+            $content = <<<EOT
+[
+    {$content}
+],
+EOT;
+            return $content;
+        };
+
+        $content = array_map($callBack, $content);
+        $this->assertIsArray($content);
+
+        $contents = '';
+        foreach ($content as $setting) {
+            $contents .= $setting;
+        };
+        $contents = <<<EOT
+[
+    {$contents}
+]
+EOT;
+        $this->assertIsString($contents);
     }
 
     /**
