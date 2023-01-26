@@ -302,7 +302,7 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
 
         $content = implode($content);
         $content = "[". PHP_EOL ."{$content}]";
-        $this->assertIsNotString($content);
+        $this->assertIsString($content);
     }
 
     /**
