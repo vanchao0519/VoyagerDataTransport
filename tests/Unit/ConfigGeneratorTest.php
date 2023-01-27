@@ -289,8 +289,8 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
 
         $callBack = function ( array $setting ) use ($keys) : string {
             $content = '';
+            $tableSignal = "\t";
             foreach ($keys as $key => $value) {
-                $tableSignal = "\t";
                 $content .= "{$tableSignal}'{$value}' => '{$setting[$value]}'," . PHP_EOL;
             }
             $content = "[". PHP_EOL ."{$content}],". PHP_EOL;
@@ -301,8 +301,8 @@ class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase {
         $this->assertIsArray($content);
 
         $content = implode($content);
-        $content = "[". PHP_EOL ."{$content}]";
-        $this->assertIsString($content);
+        $content = "[". PHP_EOL ."{$content}],";
+        $this->assertIsNotString($content);
     }
 
     /**
