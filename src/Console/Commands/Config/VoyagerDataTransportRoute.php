@@ -68,19 +68,18 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
     {
         $tableName = $this->getNameInput();
 
-        $config = $this->_generateConfig($tableName);
+        $search = [
+            '{{ get_mappings }}',
+            '{{ post_mappings }}',
+        ];
 
-        $recordArr = array_merge($config['get'], $config['post']);
+        $getMappings = $this->_getMapping($tableName);
+        $postMappings = $this->_postMapping($tableName);
 
-        $search = [];
-        $replace = [];
-
-        foreach ($recordArr as $key => $records) {
-            foreach ($records as $pre => $record) {
-                $search[] = $this->_getSearchValue($key + 1, "{$pre}_");
-                $replace[] = $record;
-            }
-        }
+        $replace = [
+            $this->_setMappings($getMappings),
+            $this->_setMappings($postMappings),
+        ];
 
         return str_replace($search, $replace, $stub);
     }
@@ -96,6 +95,50 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
         $stub = $this->files->get($this->getStub());
 
         return $this->replaceConfig($stub);
+    }
+
+
+    /**
+     * Set stub replace mappings
+     *
+     * @param array< array<string, \Closure> > $mappings
+     * @return string
+     */
+    private function _setMappings (array $mappings): string
+    {
+        $keys = [
+            self::URL,
+            self::CONTROLLER,
+            self::ACTION,
+            self::ALIAS,
+        ];
+
+        $callBack = function ( array $setting ) use ($keys) : array {
+            $array = [];
+            foreach ($keys as $key) $array[$key] = $setting[$key]();
+            return $array;
+        };
+
+        $content = array_map($callBack, $mappings);
+
+        $tableSignal = "\t";
+
+        $callBack = function ( array $setting ) use ($keys, $tableSignal) : string {
+            $content = '';
+            foreach ($keys as $key => $value) {
+                $content .= "{$tableSignal}{$tableSignal}{$tableSignal}'{$value}' => '{$setting[$value]}'," . PHP_EOL;
+            }
+            $content = "{$tableSignal}{$tableSignal}[". PHP_EOL ."{$content}{$tableSignal}{$tableSignal}],". PHP_EOL;
+            return $content;
+        };
+
+        $content = array_map($callBack, $content);
+
+        $content = implode($content);
+
+        $content = "[". PHP_EOL ."{$content}{$tableSignal}],";
+
+        return $content;
     }
 
 

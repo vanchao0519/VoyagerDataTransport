@@ -1,32 +1,6 @@
 <?php
 
 return [
-    'get' => [
-        [
-            'url' => "{{ url_1 }}",
-            'controllerName' => "{{ controllerName_1 }}",
-            'actionName' => "{{ actionName_1 }}",
-            'alias' => "{{ alias_1 }}",
-        ],
-        [
-            'url' => "{{ url_2 }}",
-            'controllerName' => "{{ controllerName_2 }}",
-            'actionName' => "{{ actionName_2 }}",
-            'alias' => "{{ alias_2 }}",
-        ],
-    ],
-    'post' => [
-        [
-            'url' => "{{ url_3 }}",
-            'controllerName' => "{{ controllerName_3 }}",
-            'actionName' => "{{ actionName_3 }}",
-            'alias' => "{{ alias_3 }}",
-        ],
-        [
-            'url' => "{{ url_4 }}",
-            'controllerName' => "{{ controllerName_4 }}",
-            'actionName' => "{{ actionName_4 }}",
-            'alias' => "{{ alias_4 }}",
-        ],
-    ],
+    'get' => {{ get_mappings }}
+    'post' => {{ post_mappings }}
 ];
