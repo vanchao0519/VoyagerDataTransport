@@ -8,7 +8,7 @@ use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
 use VoyagerDataTransport\Services\ImportDataService;
 
-class SetImportDataTest extends TestCase
+class SetImportDataControllerStubTest extends TestCase
 {
 
     use ParameterTrait;

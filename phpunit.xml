@@ -12,7 +12,7 @@
         <testsuite name="Feature">
 <!--            <directory suffix="Test.php">./tests/Feature</directory>-->
             <file>
-                tests/Feature/SetImportDataTest.php
+                tests/Feature/SetImportDataControllerStubTest.php
             </file>
             <file>
                 tests/Feature/SetSpreadSheetTest.php
