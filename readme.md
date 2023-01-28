@@ -13,7 +13,7 @@ php artisan voyager:install --with-dummy
 ```
 Move the test data csv to 'public' folder
 <br>
-Suppose you current directory is VoyagerDataTransport
+Suppose your current directory is path/to/VoyagerDataTransport
 ```php
 mv posts_data.csv public/data.csv
 ```
