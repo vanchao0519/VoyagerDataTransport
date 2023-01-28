@@ -51,6 +51,9 @@
                 tests/Feature/SetUserPermissionRoleTest.php
             </file>
             <file>
+                tests/Feature/MockImportDataTest.php
+            </file>
+            <file>
                 tests/Feature/AccessDataTransportPagesTest.php
             </file>
             <file>

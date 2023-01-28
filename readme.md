@@ -11,6 +11,12 @@ Run the command below to install basic test data
 ```php
 php artisan voyager:install --with-dummy
 ```
+Move the test data csv to 'public' folder
+<br>
+Suppose you current directory is VoyagerDataTransport
+```php
+mv posts_data.csv public/data.csv
+```
 ## How to install the VoyagerDataTransport
 ```php
 composer require vanchao0519/voyager-data-transport

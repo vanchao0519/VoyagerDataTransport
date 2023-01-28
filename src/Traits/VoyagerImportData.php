@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Reader\IReadFilter;
 use VoyagerDataTransport\Services\ChunkReadFilter;
 
 /**
@@ -37,6 +36,8 @@ trait VoyagerImportData {
     private $inputFileName = 'userfile';
 
     /**
+     * Process excel file
+     *
      * @param string $fileName
      * @param int $chunkSize This number is bigger, more memory used
      * @return array<string, bool|string>
@@ -80,6 +81,8 @@ trait VoyagerImportData {
     }
 
     /**
+     * Upload action
+     *
      * @param Request $req
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
