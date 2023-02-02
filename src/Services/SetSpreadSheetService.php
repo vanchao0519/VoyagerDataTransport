@@ -55,7 +55,9 @@ class SetSpreadSheetService
         };
         $colNumsArr = array_map( $callBack, array_keys($columns), $columns );
 
-        return $this->_getContent($colNumsArr, "\t\t");
+        $tableSignal = str_repeat("\t", 2);
+
+        return $this->_getContent($colNumsArr, $tableSignal);
     }
 
     /**
