@@ -76,7 +76,9 @@ class ImportDataService
 
         $colNumsArr = array_map( $callBack, $columns );
 
-        return $this->_getContent($colNumsArr, "\t\t\t\t\t\t\t");
+        $tableSignal = str_repeat("\t", 7);
+
+        return $this->_getContent($colNumsArr, $tableSignal);
     }
 
 }
