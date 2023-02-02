@@ -159,56 +159,11 @@ trait VoyagerDataRouteDetailConfig
      */
     private function _controllerNameGenerate(string $_namePre, string $_tableName): string
     {
-
         $pre = "App\VoyagerDataTransport\Http\Controllers";
 
-        $tableName = strtolower($_tableName);
-        $tempArr = explode("_", $tableName);
-        $baseName = '';
+        $controllerName = $this->_getControllerName($_namePre, $_tableName);
 
-        foreach ($tempArr as $s) {
-            $baseName .= ucfirst($s);
-        }
-
-        return "{$pre}\\{$_namePre}{$baseName}";
+        return "{$pre}\\{$controllerName}";
     }
 
-
-    /**
-     * Generate config data
-     *
-     * @param string $tableName
-     * @return array<string, array<int, array<string, string>>>
-     */
-    private function _generateConfig(string $tableName = ''): array
-    {
-        $routeMappings = [
-            'get' => $this->_getMapping($tableName),
-            'post' => $this->_postMapping($tableName),
-        ];
-
-        $routeConfig = [];
-
-        foreach ($routeMappings as $_verb => $_mappings) {
-            foreach ($_mappings as $_mKey => $_functions) {
-                foreach ($_functions as $_fKey => $_function) {
-                    $routeConfig[$_verb][$_mKey][$_fKey] = $_function();
-                }
-            }
-        }
-
-        return $routeConfig;
-    }
-
-    /**
-     * Iterate replace search value
-     *
-     * @param int $key
-     * @param string $pre
-     * @return string
-     */
-    private function _getSearchValue(int $key, string $pre): string
-    {
-        return "{{ {$pre}{$key} }}";
-    }
 }

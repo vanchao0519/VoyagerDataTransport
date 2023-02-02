@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataRouteDetailConfig;
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerGetControllerName;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 use VoyagerDataTransport\Contracts\IRouteParameters;
 
@@ -16,6 +17,7 @@ class VoyagerDataTransportPublishTest extends TestCase implements ICommandStatus
 {
 
     use ParameterTrait;
+    use VoyagerGetControllerName;
     use VoyagerDataRouteDetailConfig;
 
     /**

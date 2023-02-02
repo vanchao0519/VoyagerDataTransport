@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Traits\ParameterTrait;
 use Tests\TestCase;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerGetControllerName;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 
 /**
@@ -16,6 +17,7 @@ use VoyagerDataTransport\Contracts\ICommandStatus;
 class VoyagerDataTransportImportControllerTest extends TestCase implements ICommandStatus
 {
     use ParameterTrait;
+    use VoyagerGetControllerName;
     use VoyagerDataController;
 
     /**

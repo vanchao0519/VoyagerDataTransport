@@ -5,6 +5,7 @@ namespace VoyagerDataTransport\Console\Commands\Config;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use Illuminate\Console\GeneratorCommand;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataRouteDetailConfig;
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerGetControllerName;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 use VoyagerDataTransport\Contracts\IRouteParameters;
 
@@ -16,6 +17,7 @@ class VoyagerDataTransportRoute extends GeneratorCommand implements IRouteParame
 {
 
     use VoyagerDataCommon;
+    use VoyagerGetControllerName;
     use VoyagerDataRouteDetailConfig;
 
     /**

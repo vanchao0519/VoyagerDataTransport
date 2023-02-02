@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerGetControllerName;
 
 /**
  * Class DataTransportTest
@@ -10,6 +11,7 @@ use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
  */
 class DataTransportTest extends \PHPUnit\Framework\TestCase {
 
+    use VoyagerGetControllerName;
     use VoyagerDataController;
 
     /**

@@ -6,27 +6,6 @@ use TCG\Voyager\Models\Permission;
 
 trait VoyagerDataController
 {
-
-    /**
-     * Get the controller name .
-     *
-     * @param  string  $tablePre
-     * @param  string  $tableName
-     * @return string
-     */
-    protected function _getControllerName(string $tablePre ,string $tableName)
-    {
-        $name = strtolower($tableName);
-        $tempArr = explode("_", $name);
-        $baseName = '';
-
-        foreach ($tempArr as $s) {
-            $baseName .= ucfirst($s);
-        }
-
-        return "{$tablePre}{$baseName}";
-    }
-
     /**
      * Check controller file is exists.
      *
@@ -54,6 +33,4 @@ trait VoyagerDataController
 
         return $path;
     }
-
-
 }

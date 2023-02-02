@@ -6,6 +6,7 @@ use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataCommon;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataController;
 use Illuminate\Console\GeneratorCommand;
 use VoyagerDataTransport\Console\Commands\Traits\VoyagerDataControllerCommand;
+use VoyagerDataTransport\Console\Commands\Traits\VoyagerGetControllerName;
 use VoyagerDataTransport\Contracts\ICommandStatus;
 use VoyagerDataTransport\Services\SetSpreadSheetService;
 
@@ -14,6 +15,7 @@ class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
 
     use VoyagerDataCommon;
     use VoyagerDataControllerCommand;
+    use VoyagerGetControllerName;
     use VoyagerDataController;
 
     const CONFIRM_REWRITE_EXIST_FILE_INFO = 'Do you want to rewrite an exist export controller file?';
