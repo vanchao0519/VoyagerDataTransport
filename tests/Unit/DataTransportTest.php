@@ -40,7 +40,7 @@ class DataTransportTest extends \PHPUnit\Framework\TestCase {
     protected $_fileExt = '.php';
 
     /**
-     * Convert table-name to controoler-name
+     * Convert table-name to controller-name
      *
      * @return string
      */
@@ -85,7 +85,7 @@ class DataTransportTest extends \PHPUnit\Framework\TestCase {
     public function test_getControllerName (): void
     {
         $expected = $this->_expectedControllerName();
-        $actual = $this->getControllerName($this->_tableName);
+        $actual = $this->_getControllerName($this->_controllerNamePre, $this->_tableName);
         $this->assertEquals($expected, $actual);
     }
 
@@ -96,7 +96,8 @@ class DataTransportTest extends \PHPUnit\Framework\TestCase {
      */
     public function test_isFileExists (): void
     {
-        $this->assertTrue($this->isFileExists($this->_tableName));
+        $controllerName = $this->_getControllerName($this->_controllerNamePre, $this->_tableName);
+        $this->assertTrue($this->_isFileExists($controllerName));
     }
 
 }

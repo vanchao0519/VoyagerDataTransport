@@ -59,7 +59,7 @@ class VoyagerDataTransportImportControllerTest extends TestCase implements IComm
      */
     private function _getFile (): string
     {
-        $fileName = $this->getControllerName($this->_getTableName());
+        $fileName = $this->_getControllerName($this->_controllerNamePre, $this->_getTableName());
         return "{$this->_filePath}{$fileName}{$this->_fileExt}";
     }
 }

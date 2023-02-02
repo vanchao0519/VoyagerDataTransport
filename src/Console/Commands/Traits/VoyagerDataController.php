@@ -10,12 +10,13 @@ trait VoyagerDataController
     /**
      * Get the controller name .
      *
-     * @param  string  $name
+     * @param  string  $tablePre
+     * @param  string  $tableName
      * @return string
-     */    
-    protected function getControllerName($name)
+     */
+    protected function _getControllerName(string $tablePre ,string $tableName)
     {
-        $name = strtolower($name);
+        $name = strtolower($tableName);
         $tempArr = explode("_", $name);
         $baseName = '';
 
@@ -23,18 +24,18 @@ trait VoyagerDataController
             $baseName .= ucfirst($s);
         }
 
-        return "{$this->_controllerNamePre}{$baseName}";
+        return "{$tablePre}{$baseName}";
     }
 
     /**
      * Check controller file is exists.
      *
-     * @param  string  $tableName
+     * @param  string  $controllerName controller name
      * @return boolean
      */
-    protected function isFileExists (string $tableName = '')
+    protected function _isFileExists (string $controllerName)
     {
-        $fileName = "{$this->_filePath}{$this->getControllerName($tableName)}{$this->_fileExt}";
+        $fileName = "{$this->_filePath}{$controllerName}{$this->_fileExt}";
 
         return file_exists($fileName);
     }
@@ -47,9 +48,12 @@ trait VoyagerDataController
      */
     protected function getPath($name): string
     {
-        $path = "{$this->_filePath}{$this->getControllerName($name)}{$this->_fileExt}";
+        $controllerName = $this->_getControllerName($this->_controllerNamePre, $name);
+
+        $path = "{$this->_filePath}{$controllerName}{$this->_fileExt}";
 
         return $path;
     }
+
 
 }

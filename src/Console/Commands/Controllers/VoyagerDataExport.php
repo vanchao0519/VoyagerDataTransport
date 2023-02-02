@@ -77,7 +77,7 @@ class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
     {
         $tableName = strtolower($this->getNameInput());
 
-        $class = $this->getControllerName($tableName);
+        $class = $this->_getControllerName($this->_controllerNamePre, $tableName);
 
         $setSpreadSheet = new SetSpreadSheetService($tableName);
 
@@ -95,20 +95,22 @@ class VoyagerDataExport extends GeneratorCommand implements ICommandStatus
      */
     public function handle(): bool
     {
-        $name = $this->getNameInput();
+        $tableName = $this->getNameInput();
 
-        if ( $this->isFileExists($name) && !$this->confirm(self::CONFIRM_REWRITE_EXIST_FILE_INFO, false)) {
+        $controllerName = $this->_getControllerName($this->_controllerNamePre, $tableName);
+
+        if ( $this->_isFileExists($controllerName) && !$this->confirm(self::CONFIRM_REWRITE_EXIST_FILE_INFO, false)) {
             $this->warn(self::DO_NOT_REWRITE_INFO);
             return self::DO_NOT_REWRITE_CODE;
         }
 
-        $path = $this->getPath($name);
+        $path = $this->getPath($tableName);
 
         $this->info("voyager:data:export:controller path name is: {$path}");
 
         $this->makeDirectory($path);
 
-        $this->files->put($path, $this->buildClass($name));
+        $this->files->put($path, $this->buildClass($tableName));
 
         return self::ALL_PROCESS_SUCCESS_CODE;
     }
