@@ -5,6 +5,7 @@ namespace App\VoyagerDataTransport\Http\Controllers;
 use App\Http\Controllers\Controller;
 use VoyagerDataTransport\Traits\VoyagerExportData;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class {{ class }} extends Controller
 {
@@ -14,13 +15,23 @@ class {{ class }} extends Controller
     const CSV_TYPE = 20;
     const PDF_TYPE = 30;
 
-    public function export()
+    /**
+     * Export page
+     *
+     * @return View
+     */
+    public function export(): View
     {
         $this->authorize('browse_export_{{ tableName }}');
         return view('vendor.voyager.{{ tableName }}.export-data', []);
     }
 
-    protected function setSpreadSheet()
+    /**
+     * Set spread sheet
+     *
+     * @return void
+     */
+    protected function setSpreadSheet(): void
     {
 
         {{ ColNum }}

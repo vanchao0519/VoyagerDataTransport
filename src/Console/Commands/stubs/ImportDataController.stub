@@ -5,6 +5,7 @@ namespace App\VoyagerDataTransport\Http\Controllers;
 use VoyagerDataTransport\Traits\VoyagerImportData;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class {{ class }} extends Controller
 {
@@ -14,18 +15,34 @@ class {{ class }} extends Controller
 
     {{ const_fields }}
 
-    public function index()
+    /**
+     * Import page
+     *
+     * @return View
+     */
+    public function index(): View
     {
         $this->authorize('browse_import_{{ tableName }}');
         return view('vendor.voyager.{{ tableName }}.import-data', []);
     }
 
-    protected function setRedirectUrl()
+    /**
+     * Set redirect url
+     *
+     * @return void
+     */
+    protected function setRedirectUrl(): void
     {
         $this->_redirectUrl = '/admin/{{ tableName }}';
     }
 
-    protected function importData(array $data)
+    /**
+     * Import data action
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function importData(array $data): array
     {
         try {
             DB::transaction(
