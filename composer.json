@@ -18,24 +18,24 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.3|^8.0|^8.1",
         "phpoffice/phpspreadsheet": "^1.18",
         "mpdf/mpdf": "^8.1"
     },
     "require-dev": {
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "~8.0|~9.0",
-        "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5",
-        "phpunit/phpunit": "^9.5",
+        "guzzlehttp/guzzle": "^7.0.1|^7.2",
+        "laravel/framework": "~8.0|~9.0|~10.0",
+        "laravel/sanctum": "^2.11|^3.0|^3.2",
+        "laravel/tinker": "^2.5|^2.7|^2.8",
+        "phpunit/phpunit": "^9.5|~10.0",
         "tcg/voyager": "^1.6",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
-        "laravel/sail": "^1.0.1",
+        "laravel/sail": "^1.0.1|^1.18",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.10",
-        "nunomaduro/larastan": "^1.0 || ^2.0"
+        "nunomaduro/collision": "^5.10|^6.1|^7.0",
+        "nunomaduro/larastan": "^1.0|^2.0"
     },
     "autoload": {
         "psr-4": {
